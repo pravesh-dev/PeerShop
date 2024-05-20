@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         barlow: ['barlow'],
       },
+      screens: {
+        xs: '470px',
+      }
     },
   },
   plugins: [],
