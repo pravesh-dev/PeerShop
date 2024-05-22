@@ -6,6 +6,10 @@
   font-family: barlow;
   src: url('./assets/Fonts/Barlow/Barlow-Medium.ttf');
 }
+@font-face {
+  font-family: krona;
+  src: url(./assets/Fonts/Krona_One/KronaOne-Regular.ttf);
+}
 
 :root {
   font-family: barlow;

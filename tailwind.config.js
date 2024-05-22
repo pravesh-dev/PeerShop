@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         barlow: ['barlow'],
+        krona: ['krona'],
       },
       screens: {
         xs: '470px',
