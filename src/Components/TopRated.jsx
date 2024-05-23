@@ -4,18 +4,27 @@ import React, { useEffect, useState } from "react";
 
 function TopRated() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await fetch("/topRated.json");
+        let response = await fetch("/newArrival.json");
         let data = await response.json();
         setItems(data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setError(err);
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>There was an error loading the new arrivals.</p>;
   return (
     <div className="w-full p-2 flex flex-wrap justify-center gap-2 font-krona">
       {items.map((item, index) => {
