@@ -1,0 +1,32 @@
+[
+    {
+        "img": "/items/bag1.png",
+        "name": "Classic School Backpack",
+        "rating": 4.1,
+        "price": 45.12
+    },
+    {
+        "img": "/items/hoodie1.png",
+        "name": "Cool Hoodie",
+        "rating": 4.2,
+        "price": 55.01
+    },
+    {
+        "img": "/items/watch1.png",
+        "name": "Stainless Dress Watch",
+        "rating": 3.9,
+        "price": 85.30
+    },
+    {
+        "img": "/items/belt1.png",
+        "name": "Men’s Casual Belt",
+        "rating": 3.3,
+        "price": 12.62
+    },
+    {
+        "img": "/items/bracelet1.png",
+        "name": "Men’s Braided Bracelets",
+        "rating": 3.8,
+        "price": 5.12
+    }
+]

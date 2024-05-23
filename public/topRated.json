@@ -1,0 +1,38 @@
+[
+    {
+        "img": "/items/watch2.png",
+        "name": "Watch Ultra Thin",
+        "rating": 4.8,
+        "price": 47.02
+    },
+    {
+        "img": "/items/bag2.png",
+        "name": "Classic School Backpack",
+        "rating": 4.6,
+        "price": 45.01
+    },
+    {
+        "img": "/items/cap1.png",
+        "name": "Men’s Caps",
+        "rating": 4.5,
+        "price": 15.30
+    },
+    {
+        "img": "/items/t-shirt1.png",
+        "name": "Men’s Crewneck Sweater",
+        "rating": 4.7,
+        "price": 22.62
+    },
+    {
+        "img": "/items/bracelet2.png",
+        "name": "Braided Leather Plated",
+        "rating": 4.8,
+        "price": 5.12
+    },
+    {
+        "img": "/items/t-shirt2.png",
+        "name": "Men’s Casual T-shirts",
+        "rating": 4.7,
+        "price": 23.67
+    }
+]
