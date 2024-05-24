@@ -38,7 +38,7 @@ function TopRated() {
             </button>
             <div className="w-full flex justify-between items-center">
               <span className="text-[0.52rem] sm:text-[0.8rem]">${item.price}</span>{" "}
-              <button className="text-[0.3rem] bg-[#0039CA] px-3 py-[0.3rem] rounded-sm sm:text-[0.4rem] sm:px-4 sm:py-[0.4rem]">
+              <button className="text-[0.3rem] bg-[#0039CA] px-3 py-[0.3rem] rounded-sm sm:text-[0.4rem] sm:px-4 sm:py-[0.4rem] hover:bg-[#0039cac9]">
                 Add to cart
               </button>
             </div>
