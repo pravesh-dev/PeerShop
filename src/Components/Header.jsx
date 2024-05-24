@@ -45,7 +45,7 @@ function Header() {
           <a className="w-full bg-[#69409107] text-xl px-3 py-2" href="#">Contact</a>
         </nav>
       </div>
-      <div className="w-full py-5 px-3 flex items-center justify-between fixed top-0 left-0 z-[98] lg:px-12 lg:py-6">
+      <div className="w-full py-5 px-3 flex items-center justify-between fixed top-0 left-0 z-[98] lg:px-12 lg:py-6 bg-gradient-to-t from-transparent to-black backdrop-blur-sm">
         <img src={logo} alt="logo image" className="w-6 lg:w-10" />
         <nav className={`desktop_nav gap-14 hidden lg:flex lg:${showSearch ? 'hidden' : ''}`}>
           <a className="text-sm hover:scale-105 duration-300 hover:text-cyan-200" href="#">Home</a>
