@@ -55,7 +55,7 @@ function Header() {
         </nav>
         <div
           ref={searchRef}
-          className={`search-bar w-[60%] h-8 flex justify-between items-center border border-white/30 bg-white/10 rounded-3xl lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:w-[45%] lg:h-10 px-5 duration-500 lg:${!showSearch ? 'scale-0' : 'scale-100'}`}
+          className={`search-bar w-[60%] h-8 flex justify-between items-center border border-white/30 bg-white/10 rounded-3xl lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:w-[45%] lg:h-10 px-5 duration-500 ${showSearch ? 'lg:scale-[1]' : 'lg:scale-0'}`}
         >
           <input
             className="w-[80%] h-full pl-1 border-none outline-none bg-transparent text-xs ml-1 lg:text-sm"
