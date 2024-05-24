@@ -28,5 +28,17 @@
         "name": "Men’s Braided Bracelets",
         "rating": 3.8,
         "price": 5.12
+    },
+    {
+        "img": "/items/watch2.png",
+        "name": "Watch Ultra Thin",
+        "rating": 4.8,
+        "price": 47.02
+    },
+    {
+        "img": "/items/bag2.png",
+        "name": "Classic School Backpack",
+        "rating": 4.6,
+        "price": 45.01
     }
 ]
