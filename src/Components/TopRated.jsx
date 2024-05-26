@@ -7,13 +7,11 @@ function TopRated() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [clickedImage, setClickedImage] = useState("");
-  const [isClicked, setIsClicked] = useState(false);
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await fetch("https://dummyjson.com/products");
+        let response = await fetch("https://dummyjson.com/products/");
         let data = await response.json();
         setItems(data.products);
         setLoading(false);
@@ -26,10 +24,6 @@ function TopRated() {
     fetchData();
   }, []);
 
-  const handelClickedImage = (img) => {
-    setClickedImage(img);
-  };
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>There was an error loading the new arrivals.</p>;
 
@@ -40,16 +34,7 @@ function TopRated() {
         if(item.rating > 4.5){
           return (
             <div key={index} className="w-36 h-48 bg-[#090909] flex flex-col items-start justify-between p-3 sm:w-52 sm:h-[17rem] lg:w-60 lg:h-80 relative">
-              {/* <img className="w-32 sm:w-48 lg:w-56" src={item.thumbnail} alt={item.title} /> */}
-              <img
-                className="w-32 sm:w-48 lg:w-56  hover:scale-105 duration-300"
-                src={item.thumbnail}
-                alt={item.title}
-                onClick={() => {
-                  setIsClicked(true);
-                  handelClickedImage(item.thumbnail);
-                }}
-              />
+              <img className="w-32 sm:w-48 lg:w-56" src={item.thumbnail} alt={item.title} />
               <h2 className="text-[0.38rem] sm:text-[0.58rem] lg:text-[0.7rem]">{item.title}</h2>
               <button className="bg-[#4f717949] text-[#3598AF] text-[0.45rem] px-2 py-[0.04rem] rounded-sm sm:text-[0.60rem] sm:px-4 sm:py-[0.14rem]">
                 {item.rating}
@@ -65,23 +50,6 @@ function TopRated() {
         }
         
       })}
-      <div
-        className={`w-full h-screen fixed top-0 left-0 bg-black/10 backdrop-blur-lg z-[99] justify-center items-center hidden lg:${
-          isClicked ? "flex" : ""
-        }`}
-      >
-        <img className="absolute top-16 left-[87%] cursor-pointer" src={close} alt="" onClick={()=>{
-          setIsClicked(false)
-          setClickedImage('')
-        }} />
-        <div className="w-[30rem] h-[30rem] filter drop-shadow-[0_0_5px_#ffffff23]">
-          <img
-            className="w-full h-full object-cover bg-[#111]"
-            src={clickedImage}
-            alt="clicked Images"
-          />
-        </div>
-      </div>
     </div>
     </>
   );

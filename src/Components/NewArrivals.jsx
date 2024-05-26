@@ -10,12 +10,24 @@ function NewArrivals() {
   const [error, setError] = useState(null);
   const [searchInput, setSearchInput] = useState("");
 
-  const fetchData = async (query = "") => {
+  // const fetchData = async (query = "") => {
+  //   try {
+  //     let response = await fetch(`https://dummyjson.com/products/${query && `search?q=${query}`}`);
+  //     let data = await response.json();
+  //     setItems(data.products);
+  //     // console.log(data.products);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     console.log(err);
+  //     setError(err);
+  //     setLoading(false);
+  //   }
+  // };
+  const fetchData = async (query = "", limit = 100) => {
     try {
-      let response = await fetch(`https://dummyjson.com/products/${query && `search?q=${query}`}`);
+      let response = await fetch(`https://dummyjson.com/products/search?q=${query}&limit=${limit}`);
       let data = await response.json();
       setItems(data.products);
-      // console.log(data.products);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -23,6 +35,7 @@ function NewArrivals() {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
