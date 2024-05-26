@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 // import bag1 from "../assets/images/items/bag1.png";
 import close from "../assets/images/Icons/close.png";
 import search from "../assets/images/Icons/search.png";
+import { useNavigate } from "react-router-dom";
 
 function NewArrivals() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [clickedImage, setClickedImage] = useState("");
-  const [isClicked, setIsClicked] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
   const fetchData = async (query = "") => {
@@ -40,9 +39,7 @@ function NewArrivals() {
     handleSearch();
   }, [searchInput])
 
-  const handelClickedImage = (img) => {
-    setClickedImage(img);
-  };
+  const itemPage = useNavigate();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>There was an error loading the new arrivals.</p>;
@@ -89,20 +86,12 @@ function NewArrivals() {
             <div
               key={index}
               className="w-36 h-48 bg-[#090909] flex flex-col items-start justify-between p-3 sm:w-52 sm:h-[17rem] lg:w-60 lg:h-80 relative"
+              onClick={()=> itemPage('/item', {state: {item}})}
             >
               <img
                 className="w-32 sm:w-48 lg:w-56"
                 src={item.thumbnail}
                 alt={item.title}
-              />
-              <img
-                className="w-32 scale-95 sm:w-48 lg:w-56 absolute top-2 left-2 hover:scale-105 duration-300 bg-[#111]"
-                src={item.thumbnail}
-                alt={item.title}
-                onClick={() => {
-                  setIsClicked(true);
-                  handelClickedImage(item.thumbnail);
-                }}
               />
               <h2 className="text-[0.38rem] sm:text-[0.58rem] lg:text-[0.7rem]">
                 {item.title}
@@ -121,28 +110,6 @@ function NewArrivals() {
             </div>
           );
         })}
-        <div
-          className={`w-full h-screen fixed top-0 left-0 bg-black/10 backdrop-blur-lg z-[99] justify-center items-center hidden lg:${
-            isClicked ? "flex" : ""
-          }`}
-        >
-          <img
-            className="absolute top-16 left-[87%] cursor-pointer"
-            src={close}
-            alt=""
-            onClick={() => {
-              setIsClicked(false);
-              setClickedImage("");
-            }}
-          />
-          <div className="w-[30rem] h-[30rem] filter drop-shadow-[0_0_5px_#ffffff23]">
-            <img
-              className="w-full h-full object-cover bg-[#111]"
-              src={clickedImage}
-              alt="clicked Images"
-            />
-          </div>
-        </div>
         {/* <div className="w-36 h-48 flex gap-2 items-center justify-center text-xs sm:w-52 sm:h-[17rem] lg:w-60 lg:h-80">
           View all{" "}
           <span className="w-3 h-3 p-2 text-sm bg-black flex justify-center items-center rounded-full">

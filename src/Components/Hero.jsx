@@ -11,7 +11,7 @@ import Header from "./Header";
 function Hero() {
   return (
     <div className="w-full h-screen relative">
-      <Header />
+      {/* <Header /> */}
       <img className="w-full h-full object-cover" src={bgImage} alt="" />
       <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-b from-black via-black/40 to-black/80 flex flex-col justify-between py-8 lg:py-12">
         <div></div>
