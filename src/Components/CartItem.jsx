@@ -42,7 +42,7 @@ function CartItem(props) {
           <h3 className="text-[0.5rem] md:text-[0.7rem]">Type: <span className="text-white/70">{detail.category}</span></h3>
         </div>
       </div>
-      <div className="flex gap-3 items-center md:gap-6">
+      <div className="flex gap-2 items-center md:gap-6">
         <div className="w-[4.6rem] flex justify-between md:w-[7rem]">
           <button
             className="bg-[#00052017] w-6 h-6 border border-white/5 md:w-9 md:h-9"
@@ -55,7 +55,7 @@ function CartItem(props) {
             +
           </button>
         </div>
-        <p className="text-sm md:text-lg">${(detail.price * quantity).toFixed(2)}</p>
+        <p className="text-sm md:text-lg w-16 md:w-20">${(detail.price * quantity).toFixed(2)}</p>
       </div>
     </div>
   );
