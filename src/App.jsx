@@ -7,6 +7,7 @@ import Footer from "./Components/Footer";
 import Item from "./Components/Item";
 import Header from "./Components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CartTab from "./Components/CartTab";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                 <Recommendation/>
                 <ItemContainer />
                 <Blogs/>
+                <CartTab/>
               </>
             }
           >
