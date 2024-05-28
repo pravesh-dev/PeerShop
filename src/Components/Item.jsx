@@ -38,7 +38,7 @@ function Item() {
   }
   const handleAddToCart = () =>{
     dispatch(addToCart({
-      productId: id,
+      productId: item.id,
       quantity: quantity
     }))
   }

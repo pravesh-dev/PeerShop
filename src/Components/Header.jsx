@@ -7,10 +7,20 @@ import logoName from "../assets/images/logo-name.png";
 import close from "../assets/images/Icons/close.png";
 import profile from '../assets/images/profile.jpg'
 import profileDef from '../assets/images/profileDef.svg'
+import { useSelector } from "react-redux";
+
 
 
 function Header() {
   const [isNavHidden, setIsNavHidden] = useState(true);
+  const carts = useSelector(store => store.cart.items);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  useEffect(()=>{
+    let total = 0;
+    carts.forEach(item => total += item.quantity)
+    setTotalQuantity(total);
+  }, [carts])
+
 
   return (
     <>
@@ -40,7 +50,7 @@ function Header() {
         <div className="flex items-center gap-3 lg:gap-7">
           <div className="relative">
             <img className="w-4 lg:w-6 cursor-pointer" src={cart} alt="cart icon" />
-            <span className="absolute -top-[40%] -right-[30%] bg-red-700 w-3 h-3 rounded-full flex justify-center items-center text-[0.55rem] lg:w-4 lg:h-4 lg:text-[0.65rem]">4</span>
+            <span className="absolute -top-[40%] -right-[30%] bg-red-700 w-3 h-3 rounded-full flex justify-center items-center text-[0.55rem] lg:w-4 lg:h-4 lg:text-[0.65rem]">{totalQuantity}</span>
           </div>
           <img className="w-5 lg:hidden" src={menu} alt="menu bar icon" onClick={() => { setIsNavHidden(false) }} />
         </div>
