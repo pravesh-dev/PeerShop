@@ -1,14 +1,22 @@
 import React from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
+import { toggleStatusCartTab } from "../Stores/cart";
+
 
 function CartTab() {
     const carts = useSelector(store => store.cart.items);
+    const statusCartTab = useSelector(store => store.cart.statusCartTab)
+    const dispatch = useDispatch();
+
+    const handleShowCart = () =>{
+        dispatch(toggleStatusCartTab())
+    }
   return (
-    <div className="w-full h-screen fixed top-0 left-0 z-[99] bg-[#111] flex flex-col justify-center items-center">
+    <div className={`w-full h-screen duration-300 fixed top-0 ${statusCartTab === false ? 'left-full' : 'left-0'} z-[99] bg-[#111] flex flex-col justify-center items-center`}>
       <h2 className="text-xl mb-10 w-full text-center relative md:text-2xl lg:w-[60rem] lg:tracking-widest">
-        <span className="absolute top-1/2 -translate-y-1/2 left-3 text-lg md:text-2xl lg:left-0 cursor-pointer">
+        <span className="absolute top-1/2 -translate-y-1/2 left-3 text-lg md:text-2xl lg:left-0 cursor-pointer" onClick={handleShowCart}>
           <IoChevronBackOutline />
         </span>
         My Shopping Cart

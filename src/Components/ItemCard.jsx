@@ -6,7 +6,6 @@ import { addToCart } from "../Stores/cart";
 
 function ItemCard(props) {
   const carts = useSelector(store => store.cart.items);
-  console.log(carts)
   const dispatch = useDispatch();
   const {id, thumbnail, title, rating, price } = props.data;
   const link = `${id}/${title.split(" ").join("-").toLowerCase()}`;
