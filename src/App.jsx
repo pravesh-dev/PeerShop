@@ -8,32 +8,18 @@ import Item from "./Components/Item";
 import Header from "./Components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CartTab from "./Components/CartTab";
+import Layout from "./Components/Layout";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            index
-            element={
-              <>
-                <Hero />
-                <Recommendation/>
-                <ItemContainer />
-                <Blogs/>
-                <CartTab/>
-              </>
-            }
-          >
-          </Route>
-          <Route path="/:id/:name" element={<Item/>}></Route>
-        </Routes>
-      </BrowserRouter>
-      <Footer />
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout/>}>
+        <Route index element={<><Hero/> <Recommendation/> <ItemContainer/> <Blogs/><Footer/></>}></Route>
+      <Route path="/:id/:name" element={<Item/>}></Route>
+      </Route>
+    </Routes>
+    </BrowserRouter>
   );
 }
 

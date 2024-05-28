@@ -4,12 +4,11 @@ import { IoStar } from "react-icons/io5";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import cart, { addToCart } from "../Stores/cart";
+import { addToCart } from "../Stores/cart";
 
 function Item() {
     const { id } = useParams();
     const carts = useSelector(store => store.cart.items);
-    console.log(carts)
     const [item, setItem] = useState(null);
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch();
@@ -69,7 +68,7 @@ function Item() {
             <span className="flex">
               <IoStar color="#0039CA" /> <IoStar color="#0039CA" />
             </span>{" "}
-            {item.reviews.length} Reviews
+            {/* {item.reviews.length} Reviews */}
           </p>
           <p className="text-[0.55rem] font-barlowLight md:text-[0.7rem] lg:text-[0.85rem]">
             {item.description}
