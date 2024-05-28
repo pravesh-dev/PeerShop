@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route
             path="/"
+            index
             element={
               <>
                 <Hero />
@@ -24,8 +25,9 @@ function App() {
                 <Blogs/>
               </>
             }
-          ></Route>
-          <Route path="/item" element={<Item/>}></Route>
+          >
+          </Route>
+          <Route path="/:id/:name" element={<Item/>}></Route>
         </Routes>
       </BrowserRouter>
       <Footer />
