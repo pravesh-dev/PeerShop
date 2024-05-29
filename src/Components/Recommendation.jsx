@@ -70,7 +70,7 @@ function Recommendation() {
             <p className="text-[0.43rem] pr-1 text-white/60 md:pr-2 lg:text-[0.6rem] xl:text-[0.7rem] xl:pr-14">
             Check out our new Men jacket collection!
             </p>
-            <button className="px-5 py-2 bg bg-[#d9d9d912] border border-white/40 text-[0.35rem] rounded-sm lg:text-xs hover:bg-white hover:text-black duration-300">
+            <button className=" py-2 px-5 bg bg-[#d9d9d912] border border-white/40 text-[0.35rem] rounded-sm lg:text-xs hover:bg-white hover:text-black duration-300">
               Shop now
             </button>
           </div>
