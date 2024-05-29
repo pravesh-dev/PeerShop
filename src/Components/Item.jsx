@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import hoodie from "/items/hoodie1.png";
 import { IoStar } from "react-icons/io5";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";

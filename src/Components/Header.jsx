@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import logo from "../assets/images/logo.png";
 import cart from "../assets/images/Icons/cart.png";
 import menu from "../assets/images/Icons/menu.png";
 import logoName from "../assets/images/logo-name.png";

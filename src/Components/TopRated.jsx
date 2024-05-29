@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import bag1 from "../assets/images/items/bag1.png";
-import close from "../assets/images/Icons/close.png";
 import { useNavigate } from "react-router-dom";
 import ItemCard from "./ItemCard";
 

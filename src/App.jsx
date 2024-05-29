@@ -5,9 +5,7 @@ import ItemContainer from "./Components/ItemContainer";
 import Blogs from "./Components/Blogs";
 import Footer from "./Components/Footer";
 import Item from "./Components/Item";
-import Header from "./Components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CartTab from "./Components/CartTab";
 import Layout from "./Components/Layout";
 
 function App() {

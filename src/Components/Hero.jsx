@@ -6,7 +6,6 @@ import dior from "../assets/images/Icons/dior.png";
 import nike from "../assets/images/Icons/nike.png";
 import puma from "../assets/images/Icons/puma.png";
 import zara from "../assets/images/Icons/zara.png";
-import Header from "./Header";
 
 function Hero() {
   return (
