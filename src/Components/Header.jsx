@@ -33,11 +33,11 @@ function Header() {
           <img className="w-7" src={close} alt="close png" onClick={() => { setIsNavHidden(true) }} />
         </div>
         <nav className="mobile_nav flex flex-col gap-2 mt-14">
-          <a className="w-full bg-[#69409107] text-xl px-3 py-2" href="#">Home</a>
-          <a className="w-full bg-[#69409107] text-xl px-3 py-2" href="#">About Us</a>
-          <a className="w-full bg-[#69409107] text-xl px-3 py-2" href="#">Shop</a>
-          <a className="w-full bg-[#69409107] text-xl px-3 py-2" href="#">Blogs</a>
-          <a className="w-full bg-[#69409107] text-xl px-3 py-2" href="#">Contact</a>
+          <Link to='/' className="w-full bg-[#69409107] text-xl px-3 py-2"  onClick={() => { setIsNavHidden(true) }}>Home</Link>
+          <Link className="w-full bg-[#69409107] text-xl px-3 py-2"  onClick={() => { setIsNavHidden(true) }}>About Us</Link>
+          <Link className="w-full bg-[#69409107] text-xl px-3 py-2"  onClick={() => { setIsNavHidden(true) }}>Shop</Link>
+          <Link className="w-full bg-[#69409107] text-xl px-3 py-2"  onClick={() => { setIsNavHidden(true) }}>Blogs</Link>
+          <Link to='/contact' className="w-full bg-[#69409107] text-xl px-3 py-2"  onClick={() => { setIsNavHidden(true) }}>Contact</Link>
           <Link to='/login' className="bg-white text-black py-1 text-lg font-bold mt-3 mx-1 rounded-sm text-center" onClick={() => { setIsNavHidden(true) }}>Login</Link>
         </nav>
       </div>
@@ -46,10 +46,11 @@ function Header() {
           <span className="w-8 h-8 rounded-full overflow-hidden lg:w-12 lg:h-12"><img className="w-full h-full object-cover" src={profileDef} alt="" /></span>
           <h2 className="font-krona uppercase text-sm lg:hidden">PeerShop</h2>
         <nav className={`desktop_nav gap-14 hidden lg:flex`}>
-          <a className="text-sm hover:scale-105 duration-300 hover:text-cyan-200" href="#">Home</a>
-          <a className="text-sm hover:scale-105 duration-300 hover:text-cyan-200" href="#">About Us</a>
-          <a className="text-sm hover:scale-105 duration-300 hover:text-cyan-200" href="#">Shop</a>
-          <a className="text-sm hover:scale-105 duration-300 hover:text-cyan-200" href="#">Blog</a>
+          <Link to='/' className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">Home</Link>
+          <Link className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">About Us</Link>
+          <Link className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">Shop</Link>
+          <Link className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">Blog</Link>
+          <Link to='/contact' className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">Contact us</Link>
         </nav>
         <div className="flex items-center gap-3 lg:gap-7">
           <div className="relative">

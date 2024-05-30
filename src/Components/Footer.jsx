@@ -6,6 +6,7 @@ import { AiOutlineGlobal, AiFillInstagram } from "react-icons/ai";
 import { MdOutlineFacebook } from "react-icons/md";
 import { FaYoutube } from "react-icons/fa";
 import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -37,18 +38,18 @@ function Footer() {
         </div>
         <div className="flex flex-col gap-1">
           <h2 className="text-xl">Customer Care</h2>
-          <a className="footer_care_and_links" href="#">Returns</a>
-          <a className="footer_care_and_links" href="#">Shipping</a>
-          <a className="footer_care_and_links" href="#">Size Guide</a>
-          <a className="footer_care_and_links" href="#">Track Orders</a>
-          <a className="footer_care_and_links" href="#">My Orders</a>
+          <Link className="footer_care_and_links">Returns</Link>
+          <Link className="footer_care_and_links">Shipping</Link>
+          <Link className="footer_care_and_links">Size Guide</Link>
+          <Link className="footer_care_and_links">Track Orders</Link>
+          <Link className="footer_care_and_links">My Orders</Link>
         </div>
         <div className="flex flex-col gap-1">
           <h2 className="text-xl">Quick Links</h2>
-          <a className="footer_care_and_links" href="#">About Us</a>
-          <a className="footer_care_and_links" href="#">Blogs</a>
-          <a className="footer_care_and_links" href="#">Shop</a>
-          <a className="footer_care_and_links" href="#">Contact Us</a>
+          <Link className="footer_care_and_links">About Us</Link>
+          <Link className="footer_care_and_links">Blogs</Link>
+          <Link className="footer_care_and_links">Shop</Link>
+          <Link to="/contact" className="footer_care_and_links">Contact Us</Link>
         </div>
         <div className="hidden sm:flex"></div>
       </div>

@@ -13,7 +13,7 @@ export default {
       },
       screens: {
         xs: '470px',
-      }
+      },
     },
   },
   plugins: [],

@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
+import ContactUs from "./Components/ContactUs";
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
           ></Route>
           <Route path="/:id/:name" element={<Item />}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/SignUp" element={<SignUp/>}></Route>
+          <Route path="/signUp" element={<SignUp/>}></Route>
+          <Route path="/contact" element={<><ContactUs/> <Footer/></>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
