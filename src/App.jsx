@@ -8,6 +8,7 @@ import Item from "./Components/Item";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           ></Route>
           <Route path="/:id/:name" element={<Item />}></Route>
           <Route path="/login" element={<Login/>}></Route>
+          <Route path="/SignUp" element={<SignUp/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
