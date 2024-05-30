@@ -26,3 +26,6 @@
 .footer_care_and_links{
   @apply text-xs font-barlowLight lg:text-[0.9rem] lg:tracking-wider lg:font-barlowLight duration-300 hover:text-white/70 hover:scale-95
 }
+.form_input{
+  @apply bg-[#26262648] outline-none border border-white/25 rounded-sm pl-2 text-sm h-10 w-full
+}
