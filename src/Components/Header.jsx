@@ -57,6 +57,7 @@ function Header() {
             <span className="absolute -top-[40%] -right-[30%] bg-red-700 w-3 h-3 rounded-full flex justify-center items-center text-[0.55rem] lg:w-4 lg:h-4 lg:text-[0.65rem]">{totalQuantity}</span>
           </div>
           <img className="w-5 lg:hidden" src={menu} alt="menu bar icon" onClick={() => { setIsNavHidden(false) }} />
+          <Link to='/login' className="hidden lg:block bg-white text-black w-24 py-1 rounded-md text-center font-bold">Login</Link>
         </div>
       </div>
     </>
