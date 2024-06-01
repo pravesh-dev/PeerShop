@@ -6,7 +6,8 @@ import { addUserName } from "../Stores/user";
 
 function SignUp() {
   const [hoverLink, setHoverLink] = useState(false);
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
+  const [emailValidError, setEmailValidError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -43,6 +44,13 @@ function SignUp() {
           dispatch(addUserName({userName: formData.name}))
         }, 2000);
       }
+      else if(response.status === 409){
+        setEmailValidError(true)
+        setTimeout(() => {
+          setEmailValidError(false)
+          navigate('/login')
+        }, 2000);
+      }
       else{
         console.log('error occurs while submitting form')
       }
@@ -58,6 +66,7 @@ function SignUp() {
     <div className="w-full h-screen bg-[#111] flex justify-center items-center background_design">
       <div className="bg-[#0000004b] w-80 h-[30rem] mx-1  flex gap-5 flex-col items-center justify-center border border-white/20 rounded-sm md:w-[30rem] lg:mt-14 lg:w-[27rem] lg:h-[33rem] relative overflow-hidden">
       <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${submitted ? 'top-0' : '-top-14'}`}>Form submitted successfully.</h2>
+      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${emailValidError ? 'top-0' : '-top-14'}`}>Already registered with this email.</h2>
         <h1 className="text-2xl font-krona lg:mb-5">SIGN UP</h1>
         <form
           onSubmit={handleSubmit}
