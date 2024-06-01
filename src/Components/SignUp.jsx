@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUserName } from "../Stores/user";
 
 function SignUp() {
   const [hoverLink, setHoverLink] = useState(false);
   const [submitted, setSubmitted] = useState(false)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,7 +23,6 @@ function SignUp() {
   };
   const handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log(formData)
     if(formData.password === formData.confirmPassword){
       try{
         let response = await fetch('http://localhost:3000/user/userCreate', {
@@ -31,11 +34,14 @@ function SignUp() {
         credentials: 'include'
       })
       if(response.ok){
+        let data = await response.json();
         setFormData({name: '', email: '', contact: '', password: '', confirmPassword: ''})
         setSubmitted(true)
         setTimeout(() => {
           setSubmitted(false)
-        }, 3000);
+          navigate('/')
+          dispatch(addUserName({userName: formData.name}))
+        }, 2000);
       }
       else{
         console.log('error occurs while submitting form')

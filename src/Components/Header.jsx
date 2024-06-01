@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 function Header() {
   const [isNavHidden, setIsNavHidden] = useState(true);
   const carts = useSelector(store => store.cart.items);
+  const user = useSelector(store => store.user.name)
   const [totalQuantity, setTotalQuantity] = useState(0);
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -43,7 +44,7 @@ function Header() {
       </div>
       <div className="w-full py-5 px-3 flex items-center justify-between fixed top-0 left-0 z-[98] lg:px-12 lg:py-6 bg-gradient-to-t from-transparent to-black backdrop-blur-sm">
         {/* <img src={logo} alt="logo image" className="w-6 lg:w-10" /> */}
-          <span className="w-8 h-8 rounded-full overflow-hidden lg:w-12 lg:h-12"><img className="w-full h-full object-cover" src={profileDef} alt="" /></span>
+          <span className="w-8 h-8 rounded-full lg:w-12 lg:h-12 relative"><img className="w-full h-full object-cover" src={profileDef} alt="" /> <h2 className="absolute top-full left-1/2 -translate-x-1/2 text-[0.45rem] lg:text-xs text-white uppercase font-krona">{user}</h2></span>
           <h2 className="font-krona uppercase text-sm lg:hidden">PeerShop</h2>
         <nav className={`desktop_nav gap-14 hidden lg:flex`}>
           <Link to='/' className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">Home</Link>
