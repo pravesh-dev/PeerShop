@@ -94,6 +94,7 @@ function SignUp() {
             type="tel"
             name="contact"
             placeholder="Enter your contact no."
+            autoComplete="off"
             className="form_input"
             value={formData.contact}
             onChange={handleChange}

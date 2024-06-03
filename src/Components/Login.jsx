@@ -7,7 +7,11 @@ import { addUserName } from "../Stores/user";
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoginMsg, setIsLoginMsg] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [hoverLink, setHoverLink] = useState(false);
+  const [name, setName] = useState('')
 
   const [formData, setFormData] = useState({
     email: '',
@@ -31,11 +35,26 @@ function Login() {
       });
       if(response.ok){
         let data = await response.json();
-        dispatch(addUserName({userName: data.user.name}));
-        navigate('/')
+        setFormData({email: '', password: ''});
+        setName(data.user.name)
+        setIsLoginMsg(true)
+        setTimeout(() => {
+          setIsLoginMsg(false)
+          navigate('/')
+          dispatch(addUserName({userName: data.user.name}));
+        }, 2000);
+      }
+      else if(response.status === 500){
+        setServerError(true);
+        setTimeout(() => {
+          setServerError(false)
+        }, 2000);
       }
       else{
-        console.log('Something wrong! Please try again later')
+        setLoginError(true)
+        setTimeout(() => {
+          setLoginError(false)
+        }, 2000);
       }
     }catch(err){
       console.log(err)
@@ -43,7 +62,10 @@ function Login() {
   }
   return (
     <div className="w-full h-screen bg-[#111] flex justify-center items-center background_design">
-      <div className="bg-[#0000004b] w-80 h-[30rem] mx-1  flex gap-5 flex-col items-center justify-center border border-white/20 rounded-sm md:w-[30rem] lg:mt-14">
+      <div className="bg-[#0000004b] w-80 h-[30rem] mx-1  flex gap-5 flex-col items-center justify-center border border-white/20 rounded-sm md:w-[30rem] lg:mt-14 relative overflow-hidden">
+      <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${isLoginMsg ? 'top-0' : '-top-14'}`}>You are logged in as <span className=" capitalize font-krona">{name}</span>.</h2>
+      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${loginError ? 'top-0' : '-top-14'}`}>Something wrong with email or password.</h2>
+      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${serverError ? 'top-0' : '-top-14'}`}>Something went wrong! Please try again later.</h2>
         <h1 className="text-2xl font-krona lg:mb-5">LOGIN</h1>
         <form
           onSubmit={handleSubmit}
