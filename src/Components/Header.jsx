@@ -124,7 +124,6 @@ function Header() {
               Login
             </Link>
           )}
-          {/* <Link to='/login' className="bg-white text-black py-1 text-lg font-bold mt-3 mx-1 rounded-sm text-center" onClick={() => { setIsNavHidden(true) }}>Login</Link> */}
         </nav>
       </div>
       <div className="w-full py-5 px-3 flex items-center justify-between fixed top-0 left-0 z-[98] lg:px-12 lg:py-6 bg-gradient-to-t from-transparent to-black backdrop-blur-sm">
