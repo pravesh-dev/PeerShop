@@ -40,8 +40,9 @@ function Login() {
         setIsLoginMsg(true)
         setTimeout(() => {
           setIsLoginMsg(false)
-          navigate('/')
           dispatch(addUserName({userName: data.user.name}));
+          localStorage.setItem("token", data.user.token)
+          navigate('/')
         }, 2000);
       }
       else if(response.status === 500){

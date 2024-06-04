@@ -43,6 +43,8 @@ function SignUp() {
           navigate('/')
           dispatch(addUserName({userName: formData.name}))
         }, 2000);
+        console.log(data)
+        localStorage.setItem("token", data.user.token)
       }
       else if(response.status === 409){
         setEmailValidError(true)

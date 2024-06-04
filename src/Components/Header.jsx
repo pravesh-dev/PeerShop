@@ -29,20 +29,8 @@ function Header() {
   };
   const handleLogOutClick = async () => {
     setIsNavHidden(true);
-    try {
-      let response = await fetch("http://localhost:3000/user/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (response.ok) {
-        dispatch(logoutUser());
-        navigate("/");
-      } else {
-        console.log("Logout failed");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
