@@ -1,20 +1,26 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addToCart } from "../Stores/cart";
-
 
 function ItemCard(props) {
   const carts = useSelector(store => store.cart.items);
+  const loginStatus = useSelector(store => store.user.loginStatus)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {id, thumbnail, title, rating, price } = props.data;
   const link = `${id}/${title.split(" ").join("-").toLowerCase()}`;
 
   const handleAddToCart = () =>{
-    dispatch(addToCart({
+    if(!loginStatus){
+      navigate('/signUp')
+    }
+    else{
+      dispatch(addToCart({
         productId: id,
         quantity: 1
-    }))
+      }))
+    }
   }
   return (
     <div

@@ -168,7 +168,7 @@ function Header() {
           {userLoginStatus ? (
             <Link
               to="/login"
-              className="hidden lg:block bg-red-600/20 text-red-600 w-24 py-1 rounded-md text-center font-bold  duration-300 hover:bg-red-600 hover:text-white"
+              className="hidden lg:block bg-red-600/20 text-red-600 w-24 py-1 rounded-md text-center font-bold border border-red-600  duration-300 hover:bg-red-600 hover:text-white"
               onClick={handleLogOutClick}
             >
               Logout

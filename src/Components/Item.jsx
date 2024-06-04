@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { IoStar } from "react-icons/io5";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Stores/cart";
 
 function Item() {
+  const loginStatus = useSelector(store => store.user.loginStatus)
+  const navigate = useNavigate();
     const { id } = useParams();
     const carts = useSelector(store => store.cart.items);
     const [item, setItem] = useState(null);
@@ -35,10 +37,14 @@ function Item() {
     setQuantity(quantity + 1) 
   }
   const handleAddToCart = () =>{
-    dispatch(addToCart({
-      productId: item.id,
-      quantity: quantity
-    }))
+    if(!loginStatus){
+      navigate('/signUp')
+    }else{
+      dispatch(addToCart({
+        productId: item.id,
+        quantity: quantity
+      }))
+    }
   }
   if (!item) return <p className="w-full h-screen flex justify-center items-center bg-[#111]">Loading...</p>;
 
