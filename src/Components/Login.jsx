@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addUserName } from "../Stores/user";
 
 function Login() {
+  const loginStatus = useSelector(store => store.user.loginStatus);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoginMsg, setIsLoginMsg] = useState(false);
@@ -17,6 +18,13 @@ function Login() {
     email: '',
     password: ''
   })
+  
+  useEffect(() => {
+    if (loginStatus) {
+      navigate("/");
+    }
+  }, [loginStatus, navigate])
+
   const handleChange = (e) =>{
     setFormData({
       ...formData, [e.target.name]: e.target.value
