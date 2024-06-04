@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserName } from "../Stores/user";
 
 function SignUp() {
+  const loginStatus = useSelector(store => store.user.loginStatus);
+
   const [hoverLink, setHoverLink] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [emailValidError, setEmailValidError] = useState(false);
@@ -17,6 +19,12 @@ function SignUp() {
     password: "",
     confirmPassword: "",
   });
+  useEffect(() => {
+    if (loginStatus) {
+      navigate("/");
+    }
+  }, [loginStatus, navigate])
+  
   const handleChange = (e) => {
     setFormData({
     ...formData, [e.target.name]: e.target.value
@@ -38,13 +46,12 @@ function SignUp() {
         let data = await response.json();
         setFormData({name: '', email: '', contact: '', password: '', confirmPassword: ''})
         setSubmitted(true)
+        localStorage.setItem("token", data.user.token)
         setTimeout(() => {
           setSubmitted(false)
-          navigate('/')
           dispatch(addUserName({userName: formData.name}))
+          navigate('/')
         }, 2000);
-        console.log(data)
-        localStorage.setItem("token", data.user.token)
       }
       else if(response.status === 409){
         setEmailValidError(true)
