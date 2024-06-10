@@ -116,7 +116,7 @@ function Header() {
       </div>
       <div className="w-full py-5 px-3 flex items-center justify-between fixed top-0 left-0 z-[98] lg:px-12 lg:py-6 bg-gradient-to-t from-transparent to-black backdrop-blur-sm">
         <span className="w-8 h-8 rounded-full lg:w-12 lg:h-12 relative">
-          <img className="w-full h-full object-cover" src={profileDef} alt="" />{" "}
+          <Link to='/profile'><img className="w-full h-full object-cover" src={profileDef} alt="" /></Link>
           <h2 className="absolute top-full left-1/2 -translate-x-1/2 text-[0.45rem] lg:text-xs text-white uppercase font-krona">
             {user}
           </h2>
