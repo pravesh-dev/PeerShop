@@ -6,6 +6,7 @@ import { FaPowerOff, FaAngleRight } from "react-icons/fa6";
 import { RiFileList2Line } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import { logoutUser } from "../Stores/user";
+import PersonalInfo from "./PersonalInfo";
 
 function Profile() {
   const loginStatus = useSelector((store) => store.user.loginStatus);
@@ -68,8 +69,8 @@ const [isAccSetting,setIsAccSetting] = useState(false)
             </h2>
           </div>
         </div>
-        <div className={`w-full h-full bg-blue-600 absolute top-0 duration-300 ${isAccSetting ? 'left-0' : 'left-full'}`}>
-            
+        <div className={`w-full h-full absolute top-0 left-0 ${isAccSetting ? 'block' : 'hidden'}`}>
+                <PersonalInfo/>
         </div>
       </div>
     </div>
