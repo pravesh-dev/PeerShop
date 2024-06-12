@@ -29,14 +29,14 @@ function Address() {
         Add a new address
       </div>
       <div
-        className={`w-full h-[32rem] ${
+        className={`w-full h-[32rem] bg-[#5f5f5f07] px-1 mt-3 ${
           isAddAddress ? "block" : "hidden"
         } overflow-y-auto`}
       >
         <AddNewAddress />
       </div>
 
-      <div className="w-full p-1 py-2 border-[0.5px] border-white/40 mt-5">
+      <div className="w-full p-1 py-2 bg-neutral-900 mt-5">
         <div className="flex justify-between items-center">
           <span className="bg-[#282828] px-3 py-1 text-[#7B7B7B] text-[0.5rem]">
             Home

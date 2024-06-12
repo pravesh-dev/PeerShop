@@ -8,6 +8,7 @@ import { FaUser } from "react-icons/fa";
 import { logoutUser } from "../Stores/user";
 import PersonalInfo from "./PersonalInfo";
 import Address from "./Address";
+import PanCard from "./PanCard";
 
 function Profile() {
   const loginStatus = useSelector((store) => store.user.loginStatus);
@@ -72,7 +73,8 @@ const [isAccSetting,setIsAccSetting] = useState(false)
         </div>
         <div className={`w-full h-full absolute top-0 left-0 ${isAccSetting ? 'block' : 'hidden'}`}>
                 {/* <PersonalInfo/> */}
-                <Address/>
+                {/* <Address/> */}
+                <PanCard/>
         </div>
       </div>
     </div>
