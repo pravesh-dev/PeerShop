@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function PersonalInfo() {
   return (
-    <div className="w-full h-full bg-[#111] border relative">
+    <div className="w-full h-full bg-[#111] relative">
       <div className="flex items-center gap-5">
         <span className="text-lg">
           <FaAngleLeft />

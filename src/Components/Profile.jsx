@@ -7,6 +7,7 @@ import { RiFileList2Line } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 import { logoutUser } from "../Stores/user";
 import PersonalInfo from "./PersonalInfo";
+import Address from "./Address";
 
 function Profile() {
   const loginStatus = useSelector((store) => store.user.loginStatus);
@@ -30,7 +31,7 @@ const [isAccSetting,setIsAccSetting] = useState(false)
 
   return (
     <div className="bg-[#111] w-full min-h-screen flex justify-center items-center">
-      <div className="w-[19rem] h-[34rem] mt-28 mb-2 relative overflow-x-hidden">
+      <div className="w-[19rem] min-h-[34rem] mt-28 mb-2 relative overflow-x-hidden">
         <div className="w-full h-full flex flex-col justify-between">
           <div className="w-full bg-[#191919] flex items-center gap-5 py-3 px-4">
             <img src={profileDef} className="w-10 h-10 rounded-full" alt="profile image" />
@@ -70,7 +71,8 @@ const [isAccSetting,setIsAccSetting] = useState(false)
           </div>
         </div>
         <div className={`w-full h-full absolute top-0 left-0 ${isAccSetting ? 'block' : 'hidden'}`}>
-                <PersonalInfo/>
+                {/* <PersonalInfo/> */}
+                <Address/>
         </div>
       </div>
     </div>
