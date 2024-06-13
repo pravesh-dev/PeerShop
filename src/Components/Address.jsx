@@ -3,14 +3,14 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { RiAddFill } from "react-icons/ri";
 import AddNewAddress from "./AddNewAddress";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import { changeActiveProfileTab, setIsAccSetting } from "../Stores/user";
-import { useDispatch } from "react-redux";
+import { changeActiveProfileTab, setIsAccSetting, setIsAddAddress } from "../Stores/user";
+import { useDispatch, useSelector } from "react-redux";
 
 function Address() {
-  const [isAddAddress, setIsAddAddress] = useState(false);
+  const isAddAddress = useSelector(store => store.user.isAddAddress);
   const dispatch = useDispatch();
   const handleAddAddress = () => {
-    setIsAddAddress(true);
+    dispatch(setIsAddAddress({addAddress: true}));
   };
   const handleBackBtn = () =>{
     dispatch(changeActiveProfileTab({activeTab: "profile"}))

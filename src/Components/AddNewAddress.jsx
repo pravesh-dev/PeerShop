@@ -1,7 +1,13 @@
 import React from "react";
 import { FaSortDown } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { setIsAddAddress } from "../Stores/user";
 
 function AddNewAddress() {
+  const dispatch = useDispatch();
+  const handleCancelBtn = () =>{
+    dispatch(setIsAddAddress({addAddress: false}))
+  }
   return (
     <div className="w-full py-2 flex flex-col gap-2 lg:gap-4 xl:w-[80%]">
       <h2 className="uppercase text-sm text-[#3f3bff]">add a new address</h2>
@@ -77,7 +83,7 @@ function AddNewAddress() {
         </div>
       </div>
       <div className="w-full flex justify-end mt-2 lg:flex-row-reverse">
-        <button className="text-[#221EFF] text-base px-7 py-1">CANCEL</button>
+        <button className="text-[#221EFF] text-base px-7 py-1" onClick={handleCancelBtn}>CANCEL</button>
         <button className="bg-[#221EFF] text-base px-7 py-1 rounded-sm">
           SAVE
         </button>

@@ -10,7 +10,8 @@ const initialState = {
   name: storedToken ? storedUser.name : "",
   loginStatus: storedToken ? true : false,
   activeProfileTab: 'profile',
-  isAccSetting: false
+  isAccSetting: false,
+  isAddAddress: false,
 };
 
 const userSlice = createSlice({
@@ -40,9 +41,13 @@ const userSlice = createSlice({
     setIsAccSetting(state, action){
       const { accSetting } = action.payload;
       state.isAccSetting = accSetting;
+    },
+    setIsAddAddress(state, action){
+      const { addAddress } = action.payload;
+      state.isAddAddress = addAddress;
     }
   },
 });
 
-export const { addUserName, logoutUser, changeActiveProfileTab, setIsAccSetting } = userSlice.actions;
+export const { addUserName, logoutUser, changeActiveProfileTab, setIsAccSetting, setIsAddAddress} = userSlice.actions;
 export default userSlice.reducer;
