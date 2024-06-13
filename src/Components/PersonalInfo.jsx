@@ -1,12 +1,20 @@
 import React from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsAccSetting } from "../Stores/user";
 
 function PersonalInfo() {
+  const dispatch = useDispatch();
+
+  const handleBackBtn = () =>{
+    // dispatch(changeActiveProfileTab({activeTab: }))
+    dispatch(setIsAccSetting({accSetting: false}))
+  }
   return (
     <div className="w-full h-full relative flex flex-col">
       <div className="flex items-center gap-5">
-        <span className="text-lg">
+        <span className="text-lg md:hidden" onClick={handleBackBtn}>
           <FaAngleLeft />
         </span>
         <h1 className="text-white text-xl">Personal Information</h1>

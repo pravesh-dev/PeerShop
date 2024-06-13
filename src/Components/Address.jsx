@@ -3,16 +3,23 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { RiAddFill } from "react-icons/ri";
 import AddNewAddress from "./AddNewAddress";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import { changeActiveProfileTab, setIsAccSetting } from "../Stores/user";
+import { useDispatch } from "react-redux";
 
 function Address() {
   const [isAddAddress, setIsAddAddress] = useState(false);
+  const dispatch = useDispatch();
   const handleAddAddress = () => {
     setIsAddAddress(true);
   };
+  const handleBackBtn = () =>{
+    dispatch(changeActiveProfileTab({activeTab: "profile"}))
+    dispatch(setIsAccSetting({accSetting: false}))
+  }
   return (
     <div className="w-full h-full relative">
       <div className="flex items-center gap-5">
-        <span className="text-lg">
+        <span className="text-lg" onClick={handleBackBtn}>
           <FaAngleLeft />
         </span>
         <h1 className="text-white text-xl">Manage Addresses</h1>

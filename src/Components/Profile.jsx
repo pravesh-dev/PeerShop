@@ -5,7 +5,7 @@ import profileDef from "../assets/images/profileDef.svg";
 import { FaPowerOff, FaAngleRight } from "react-icons/fa6";
 import { RiFileList2Line } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
-import { changeActiveProfileTab, logoutUser } from "../Stores/user";
+import { changeActiveProfileTab, logoutUser, setIsAccSetting } from "../Stores/user";
 import PersonalInfo from "./PersonalInfo";
 import Address from "./Address";
 import PanCard from "./PanCard";
@@ -13,11 +13,12 @@ import PanCard from "./PanCard";
 function Profile() {
   const loginStatus = useSelector((store) => store.user.loginStatus);
   const user = useSelector((store) => store.user.name);
-  const activeProfileTab = useSelector(store => store.user.activeProfileTab)
+  const activeProfileTab = useSelector(store => store.user.activeProfileTab);
+  const isAccSetting = useSelector(store => store.user.isAccSetting);
   console.log(activeProfileTab)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-const [isAccSetting,setIsAccSetting] = useState(false)
+
   useEffect(() => {
     if (!loginStatus) {
       navigate("/login");
@@ -29,7 +30,7 @@ const [isAccSetting,setIsAccSetting] = useState(false)
     navigate("/");
   };
   const handleAccountClick = (tab) => {
-    setIsAccSetting(true)
+    dispatch(setIsAccSetting({accSetting: true}))
     dispatch(changeActiveProfileTab({activeTab: tab}))
   }
 

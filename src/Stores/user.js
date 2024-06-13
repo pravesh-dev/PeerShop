@@ -9,7 +9,8 @@ const storedUser = storedUserData ? JSON.parse(storedUserData) : null;
 const initialState = {
   name: storedToken ? storedUser.name : "",
   loginStatus: storedToken ? true : false,
-  activeProfileTab: 'profile'
+  activeProfileTab: 'profile',
+  isAccSetting: false
 };
 
 const userSlice = createSlice({
@@ -35,9 +36,13 @@ const userSlice = createSlice({
     changeActiveProfileTab(state, action){
       const { activeTab } = action.payload;
       state.activeProfileTab = activeTab;
+    },
+    setIsAccSetting(state, action){
+      const { accSetting } = action.payload;
+      state.isAccSetting = accSetting;
     }
   },
 });
 
-export const { addUserName, logoutUser, changeActiveProfileTab } = userSlice.actions;
+export const { addUserName, logoutUser, changeActiveProfileTab, setIsAccSetting } = userSlice.actions;
 export default userSlice.reducer;
