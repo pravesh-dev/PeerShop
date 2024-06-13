@@ -35,8 +35,8 @@ const [isAccSetting,setIsAccSetting] = useState(false)
 
   return (
     <div className="bg-[#111] w-full min-h-screen flex justify-center items-center">
-      <div className="w-[19rem] h-[34rem] mt-28 mb-1 border relative overflow-x-hidden">
-        <div className="w-full h-full flex flex-col justify-between">
+      <div className="w-full mx-2 h-[34rem] mt-28 mb-1 relative overflow-x-hidden md:w-[45rem] md:flex md:justify-between lg:w-[60rem] lg:h-auto xl:w-[94%]">
+        <div className="w-full h-full flex flex-col justify-between md:w-[20rem]">
           <div className="w-full bg-[#191919] flex items-center gap-5 py-3 px-4">
             <img src={profileDef} className="w-10 h-10 rounded-full" alt="profile image" />
             <div>
@@ -74,7 +74,7 @@ const [isAccSetting,setIsAccSetting] = useState(false)
             </h2>
           </div>
         </div>
-        <div className={`w-full h-full absolute top-0 left-0 ${isAccSetting ? 'block' : 'hidden'}`}>
+        <div className={`w-full h-full absolute top-0 left-0 ${isAccSetting ? 'block' : 'hidden'} bg-[#111] md:relative md:block md:w-[20rem] md:bg-[#191919] md:p-2 lg:w-[35rem] lg:h-auto lg:p-7 xl:w-[69%]`}>
                 {
                   activeProfileTab === 'profile' ? (
                     <PersonalInfo />
