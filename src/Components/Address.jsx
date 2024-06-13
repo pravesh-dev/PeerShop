@@ -17,41 +17,43 @@ function Address() {
         </span>
         <h1 className="text-white text-xl">Manage Addresses</h1>
       </div>
-      <div
-        className={`w-full py-2 px-4 mt-5 text-[#3F3BFF] uppercase gap-3 text-sm items-center border-[0.5px] border-white/40 ${
-          isAddAddress ? "hidden" : "flex"
-        }`}
-        onClick={handleAddAddress}
-      >
-        <span className="text-xl">
-          <RiAddFill />
-        </span>
-        Add a new address
-      </div>
-      <div
-        className={`w-full h-[32rem] bg-[#5f5f5f07] px-1 mt-3 ${
-          isAddAddress ? "block" : "hidden"
-        } overflow-y-auto`}
-      >
-        <AddNewAddress />
-      </div>
-
-      <div className="w-full p-1 py-2 bg-neutral-900 mt-5">
-        <div className="flex justify-between items-center">
-          <span className="bg-[#282828] px-3 py-1 text-[#7B7B7B] text-[0.5rem]">
-            Home
-          </span>{" "}
-          <span className="text-[#7B7B7B] text-sm">
-            <HiOutlineDotsVertical />
+      <div className="h-[32rem] overflow-y-auto">
+        <div
+          className={`w-full py-2 px-4 mt-5 text-[#3F3BFF] uppercase gap-3 text-sm items-center border-[0.5px] border-white/40 ${
+            isAddAddress ? "hidden" : "flex"
+          }`}
+          onClick={handleAddAddress}
+        >
+          <span className="text-xl">
+            <RiAddFill />
           </span>
+          Add a new address
         </div>
-        <h2 className="flex gap-5 text-sm">
-          Pravesh <span className="font-sans font-thin">9991831473</span>
-        </h2>
-        <p className="text-[0.52rem] text-[#b8b8b8] w-64">
-          Shree Balaji mandir, Niwaz Nagar, Mahendragarh District, Haryana -{" "}
-          <span className="text-white">123001</span>
-        </p>
+        <div
+          className={`w-full bg-[#5f5f5f07] px-1 mt-3 ${
+            isAddAddress ? "block" : "hidden"
+          }`}
+        >
+          <AddNewAddress />
+        </div>
+
+        <div className="w-full p-1 py-2 bg-neutral-900 mt-5">
+          <div className="flex justify-between items-center">
+            <span className="bg-[#282828] px-3 py-1 text-[#7B7B7B] text-[0.5rem]">
+              Home
+            </span>{" "}
+            <span className="text-[#7B7B7B] text-sm">
+              <HiOutlineDotsVertical />
+            </span>
+          </div>
+          <h2 className="flex gap-5 text-sm">
+            Pravesh <span className="font-sans font-thin">9991831473</span>
+          </h2>
+          <p className="text-[0.52rem] text-[#b8b8b8] w-64">
+            Shree Balaji mandir, Niwaz Nagar, Mahendragarh District, Haryana -{" "}
+            <span className="text-white">123001</span>
+          </p>
+        </div>
       </div>
     </div>
   );

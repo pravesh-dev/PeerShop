@@ -9,6 +9,7 @@ const storedUser = storedUserData ? JSON.parse(storedUserData) : null;
 const initialState = {
   name: storedToken ? storedUser.name : "",
   loginStatus: storedToken ? true : false,
+  activeProfileTab: 'profile'
 };
 
 const userSlice = createSlice({
@@ -31,8 +32,12 @@ const userSlice = createSlice({
       localStorage.removeItem('token')
       localStorage.removeItem('userData')
     },
+    changeActiveProfileTab(state, action){
+      const { activeTab } = action.payload;
+      state.activeProfileTab = activeTab;
+    }
   },
 });
 
-export const { addUserName, logoutUser } = userSlice.actions;
+export const { addUserName, logoutUser, changeActiveProfileTab } = userSlice.actions;
 export default userSlice.reducer;
