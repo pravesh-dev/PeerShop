@@ -58,7 +58,7 @@ function PersonalInfo() {
         type="number"
         placeholder="Enter mobile number"
       />
-      <button className="bg-[#221EFF] text-base px-10 py-2 rounded-sm mt-6 self-end lg:self-start">
+      <button className={`bg-[#221EFF] text-base px-10 py-2 rounded-sm mt-6 self-end lg:self-start ${isEdit ? "block" : "hidden"}`}>
         SAVE
       </button>
       <Link className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider">Deactivate Account</Link>
