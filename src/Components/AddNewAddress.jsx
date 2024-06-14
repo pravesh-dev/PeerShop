@@ -13,24 +13,24 @@ function AddNewAddress() {
       <h2 className="uppercase text-sm text-[#3f3bff]">add a new address</h2>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="text"
           placeholder="Name"
         />
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="number"
           placeholder="10-digit mobile number"
         />
       </div>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="number"
           placeholder="Pincode"
         />
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="text"
           placeholder="Locality"
         />
@@ -41,7 +41,7 @@ function AddNewAddress() {
       ></textarea>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="text"
           placeholder="City/District/Town"
         />
@@ -59,12 +59,12 @@ function AddNewAddress() {
       </div>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="text"
           placeholder="Landmark (Optional)"
         />
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs outline-none lg:w-1/2"
+          className="profile_inputs"
           type="number"
           placeholder="Alternate Phone (Optional)"
         />

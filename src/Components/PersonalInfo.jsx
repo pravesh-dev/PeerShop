@@ -25,14 +25,17 @@ function PersonalInfo() {
       <h3 className="text-sm mb-1 mt-4">Your Name</h3>
       <div className="flex flex-col gap-2 lg:flex-row">
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs lg:w-[49%]"
+          className="profile_inputs"
           type="text"
           placeholder="First Name"
-        />
+          value={'some'}
+          disabled={!isEdit}
+          />
         <input
-          className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs lg:w-[49%]"
+          className="profile_inputs"
           type="text"
           placeholder="Last Name"
+          disabled={!isEdit}
         />
       </div>
       <h3 className="text-sm mb-1 mt-4">Your Gender</h3>
@@ -48,15 +51,17 @@ function PersonalInfo() {
       </div>
       <h3 className="text-sm mb-1 mt-4">Email Address</h3>
       <input
-        className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs lg:w-[49%]"
+        className="profile_inputs"
         type="email"
         placeholder="Email address"
+        disabled={!isEdit}
       />
       <h3 className="text-sm mb-1 mt-4">Mobile Number</h3>
       <input
-        className="bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs lg:w-[49%]"
+        className="profile_inputs"
         type="number"
         placeholder="Enter mobile number"
+        disabled={!isEdit}
       />
       <button className={`bg-[#221EFF] text-base px-10 py-2 rounded-sm mt-6 self-end lg:self-start ${isEdit ? "block" : "hidden"}`}>
         SAVE
