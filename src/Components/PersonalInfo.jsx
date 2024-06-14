@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { setIsAccSetting } from "../Stores/user";
 
 function PersonalInfo() {
   const dispatch = useDispatch();
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleBackBtn = () =>{
     // dispatch(changeActiveProfileTab({activeTab: }))
@@ -18,7 +19,8 @@ function PersonalInfo() {
           <FaAngleLeft />
         </span>
         <h1 className="text-white text-xl">Personal Information</h1>
-        <button className="text-[#3F3BFF] font-bold">Edit</button>
+        <button className={`text-[#3F3BFF] font-bold ${isEdit ? "hidden" : "block"}`} onClick={()=>{setIsEdit(true)}}>Edit</button>
+        <button className={`text-[#3F3BFF] font-bold ${isEdit ? "block" : "hidden"}`} onClick={()=>{setIsEdit(false)}}>Cancel</button>
       </div>
       <h3 className="text-sm mb-1 mt-4">Your Name</h3>
       <div className="flex flex-col gap-2 lg:flex-row">
