@@ -8,11 +8,15 @@ function PersonalInfo() {
   const dispatch = useDispatch();
   const {name, email, contact} = useSelector(store => store.user);
   const [isEdit, setIsEdit] = useState(false);
+  const [isMale, setIsMale] = useState(false);
+  const [isFemale, setIsFemale] = useState(false);
 
   const handleBackBtn = () =>{
     // dispatch(changeActiveProfileTab({activeTab: }))
     dispatch(setIsAccSetting({accSetting: false}))
   }
+  console.log(`male: ${isMale}`)
+  console.log(`female: ${isFemale}`)
   return (
     <div className="w-full h-full relative flex flex-col">
       <div className="flex items-center gap-5">
@@ -35,12 +39,18 @@ function PersonalInfo() {
       </div>
       <h3 className="text-sm mb-1 mt-4">Your Gender</h3>
       <div className="flex gap-2">
-        <h2 className="text-xs flex items-center gap-2">
-          <span className="w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b] rounded-full"></span>{" "}
+        <h2 className="text-xs flex items-center gap-2" onClick={()=>{
+          setIsMale(true)
+          setIsFemale(false)
+        }}>
+          <span className={`w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b] rounded-full ${isMale ? 'bg-blue-700' : ''}`}></span>{" "}
           Male
         </h2>
-        <h2 className="text-xs flex items-center gap-2">
-          <span className="w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b] rounded-full"></span>{" "}
+        <h2 className="text-xs flex items-center gap-2" onClick={()=>{
+          setIsFemale(true)
+          setIsMale(false)
+        }}>
+          <span className={`w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b] rounded-full ${isFemale ? 'bg-blue-700' : ''}`}></span>{" "}
           Female
         </h2>
       </div>
