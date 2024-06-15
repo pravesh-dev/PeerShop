@@ -33,7 +33,7 @@ const userSlice = createSlice({
     logoutUser(state) {
       state.name = "";
       state.email = "";
-      // state.contact = "";
+      state.contact = "";
       state.loginStatus = false;
 
       // removing the user data and token from local storage
