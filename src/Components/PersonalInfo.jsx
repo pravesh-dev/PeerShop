@@ -10,13 +10,20 @@ function PersonalInfo() {
   const [isEdit, setIsEdit] = useState(false);
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
-
+  const [formData, setFormData] = useState({
+    name: name,
+    email: email,
+    contact: contact
+  })
+  const handleChange = (e) => {
+    setFormData({
+      ...formData, [e.target.name]: e.target.value
+    })
+  }
   const handleBackBtn = () =>{
     // dispatch(changeActiveProfileTab({activeTab: }))
     dispatch(setIsAccSetting({accSetting: false}))
   }
-  console.log(`male: ${isMale}`)
-  console.log(`female: ${isFemale}`)
   return (
     <div className="w-full h-full relative flex flex-col">
       <div className="flex items-center gap-5">
@@ -32,9 +39,11 @@ function PersonalInfo() {
         <input
           className="profile_inputs"
           type="text"
+          name="name"
           placeholder="First Name"
-          value={name}
+          value={formData.name}
           disabled={!isEdit}
+          onChange={handleChange}
           />
       </div>
       <h3 className="text-sm mb-1 mt-4">Your Gender</h3>
@@ -58,17 +67,21 @@ function PersonalInfo() {
       <input
         className="profile_inputs"
         type="email"
+        name="email"
         placeholder="Email address"
         disabled={!isEdit}
-        value={email}
+        value={formData.email}
+        onChange={handleChange}
       />
       <h3 className="text-sm mb-1 mt-4">Mobile Number</h3>
       <input
         className="profile_inputs"
         type="number"
+        name="contact"
         placeholder="Enter mobile number"
         disabled={!isEdit}
-        value={contact}
+        value={formData.contact}
+        onChange={handleChange}
       />
       <button className={`bg-[#221EFF] text-base px-10 py-2 rounded-sm mt-6 self-end lg:self-start ${isEdit ? "block" : "hidden"}`}>
         SAVE
