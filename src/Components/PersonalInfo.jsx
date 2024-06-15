@@ -6,6 +6,7 @@ import { setIsAccSetting } from "../Stores/user";
 
 function PersonalInfo() {
   const dispatch = useDispatch();
+  const {name, email, contact} = useSelector(store => store.user);
   const [isEdit, setIsEdit] = useState(false);
 
   const handleBackBtn = () =>{
@@ -28,6 +29,7 @@ function PersonalInfo() {
           className="profile_inputs"
           type="text"
           placeholder="First Name"
+          value={name}
           disabled={!isEdit}
           />
       </div>
@@ -48,6 +50,7 @@ function PersonalInfo() {
         type="email"
         placeholder="Email address"
         disabled={!isEdit}
+        value={email}
       />
       <h3 className="text-sm mb-1 mt-4">Mobile Number</h3>
       <input
@@ -55,6 +58,7 @@ function PersonalInfo() {
         type="number"
         placeholder="Enter mobile number"
         disabled={!isEdit}
+        value={contact}
       />
       <button className={`bg-[#221EFF] text-base px-10 py-2 rounded-sm mt-6 self-end lg:self-start ${isEdit ? "block" : "hidden"}`}>
         SAVE
