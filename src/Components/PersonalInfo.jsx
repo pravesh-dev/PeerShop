@@ -28,15 +28,8 @@ function PersonalInfo() {
           className="profile_inputs"
           type="text"
           placeholder="First Name"
-          value={'some'}
           disabled={!isEdit}
           />
-        <input
-          className="profile_inputs"
-          type="text"
-          placeholder="Last Name"
-          disabled={!isEdit}
-        />
       </div>
       <h3 className="text-sm mb-1 mt-4">Your Gender</h3>
       <div className="flex gap-2">

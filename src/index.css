@@ -42,5 +42,5 @@
 }
 
 .profile_inputs{
-  @apply bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs lg:w-[49%] disabled:text-gray-400 disabled:border-white/10 outline-none
+  @apply bg-[#2626264b] border-[0.5px] border-white/30 w-full h-10 pl-2 text-xs lg:w-[69%] xl:w-[50%] disabled:text-gray-400 disabled:border-white/10 outline-none
 }
