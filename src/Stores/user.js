@@ -8,6 +8,8 @@ const storedUser = storedUserData ? JSON.parse(storedUserData) : null;
 //  setting initial state to null if the user data is not stored in local storage
 const initialState = {
   name: storedToken ? storedUser.name : "",
+  email: storedToken ? storedUser.email : "",
+  contact: storedToken ? storedUser.contact : "",
   loginStatus: storedToken ? true : false,
   activeProfileTab: 'profile',
   isAccSetting: false,
@@ -19,15 +21,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUserName(state, action) {
-      const { userName } = action.payload;
+      const { userName, userEmail, userContact } = action.payload;
       state.name = userName;
+      state.email = userEmail;
+      state.contact = userContact;
       state.loginStatus = true;
 
     //   store the updated user data in localStorage
-    localStorage.setItem('userData', JSON.stringify({name: userName}));
+    localStorage.setItem('userData', JSON.stringify({name: userName, email: userEmail, contact: userContact}));
     },
     logoutUser(state) {
       state.name = "";
+      state.email = "";
+      state.contact = "";
       state.loginStatus = false;
 
       // removing the user data and token from local storage

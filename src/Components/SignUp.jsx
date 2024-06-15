@@ -49,7 +49,7 @@ function SignUp() {
         localStorage.setItem("token", data.user.token)
         setTimeout(() => {
           setSubmitted(false)
-          dispatch(addUserName({userName: formData.name}))
+          dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact}))
           navigate('/')
         }, 2000);
       }
