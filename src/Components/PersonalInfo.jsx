@@ -7,6 +7,8 @@ import { addUserName, setIsAccSetting } from "../Stores/user";
 function PersonalInfo() {
   const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
   const { name, email, contact, gender } = useSelector((store) => store.user);
   const [isEdit, setIsEdit] = useState(false);
@@ -53,17 +55,48 @@ function PersonalInfo() {
         setTimeout(() => {
           setSubmitted(false)
           dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact, userGender: data.user.gender}))
-          navigate('/')
+        }, 2000);
+      }
+      else if(response.status === 404){
+        let data = await response.json();
+        setError(true);
+        setErrorMsg(data.message);
+        setTimeout(() => {
+          setError(false)
+          setErrorMsg('');
+        }, 2000);
+      }
+      else if(response.status === 409){
+        let data = await response.json();
+        setError(true);
+        setErrorMsg(data.message);
+        setTimeout(() => {
+          setError(false)
+          setErrorMsg('');
+        }, 2000);
+      }
+      else{
+        setError(true);
+        setErrorMsg('Server Error. Please try again later!');
+        setTimeout(() => {
+          setError(false)
+          setErrorMsg('');
         }, 2000);
       }
     }catch(err){
-      console.log(err)
+      setError(true);
+      setErrorMsg('Something went wrong. Please try again later!');
+      setTimeout(() => {
+        setError(false)
+        setErrorMsg('');
+      }, 2000);
     }
   }
 
   return (
     <div className="w-full h-full relative flex flex-col">
-      <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${submitted ? 'top-0' : '-top-14'}`}>User data updated successfully.</h2>
+      <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute left-1/2 -translate-x-1/2 w-80 text-center duration-300 ${submitted ? 'top-0' : '-top-full'}`}>User data updated successfully.</h2>
+      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute left-1/2 -translate-x-1/2 w-80 text-center duration-300 ${error ? 'top-0' : '-top-20'}`}>{errorMsg}</h2>
       <div className="flex items-center gap-5">
         <span className="text-lg md:hidden" onClick={handleBackBtn}>
           <FaAngleLeft />
@@ -170,7 +203,7 @@ function PersonalInfo() {
       >
         SAVE
       </button>
-      <Link className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider">
+      <Link className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider lg:bottom-0 lg:left-80">
         Deactivate Account
       </Link>
     </div>
