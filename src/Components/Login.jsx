@@ -48,7 +48,7 @@ function Login() {
         setIsLoginMsg(true)
         setTimeout(() => {
           setIsLoginMsg(false)
-          dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact}));
+          dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact, userGender: data.user.gender}));
           localStorage.setItem("token", data.user.token)
           navigate('/')
         }, 2000);

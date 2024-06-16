@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsAccSetting } from "../Stores/user";
+import { addUserName, setIsAccSetting } from "../Stores/user";
 
 function PersonalInfo() {
   const dispatch = useDispatch();
+  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
   const { name, email, contact, gender } = useSelector((store) => store.user);
   const [isEdit, setIsEdit] = useState(false);
   const [formData, setFormData] = useState({
     name: name,
-    email: email,
+    oldEmail: email,
+    newEmail: '',
     contact: contact,
     gender: gender || 'N/A',
   });
@@ -34,18 +37,33 @@ function PersonalInfo() {
   };
 
   const handleSubmit = async (e) => {
-    let response = await fetch('http://localhost:3000/user/update', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData),
-      credentials: 'include'
-    })
+    try{
+      let response = await fetch('http://localhost:3000/user/update', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include'
+      });
+      if(response.ok){
+        let data = await response.json();
+        console.log(data)
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false)
+          dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact, userGender: data.user.gender}))
+          navigate('/')
+        }, 2000);
+      }
+    }catch(err){
+      console.log(err)
+    }
   }
 
   return (
     <div className="w-full h-full relative flex flex-col">
+      <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${submitted ? 'top-0' : '-top-14'}`}>User data updated successfully.</h2>
       <div className="flex items-center gap-5">
         <span className="text-lg md:hidden" onClick={handleBackBtn}>
           <FaAngleLeft />
@@ -113,14 +131,24 @@ function PersonalInfo() {
           Female
         </h2>
       </div>
-      <h3 className="text-sm mb-1 mt-4">Email Address</h3>
+      <h3 className="text-sm mb-1 mt-4">Current Email Address</h3>
       <input
         className="profile_inputs"
         type="email"
-        name="email"
+        name="oldEmail"
+        placeholder="Email address"
+        disabled
+        value={formData.oldEmail}
+        onChange={handleChange}
+      />
+      <h3 className="text-sm mb-1 mt-4">New Email Address</h3>
+      <input
+        className="profile_inputs"
+        type="email"
+        name="newEmail"
         placeholder="Email address"
         disabled={!isEdit}
-        value={formData.email}
+        value={formData.newEmail}
         onChange={handleChange}
       />
       <h3 className="text-sm mb-1 mt-4">Mobile Number</h3>
