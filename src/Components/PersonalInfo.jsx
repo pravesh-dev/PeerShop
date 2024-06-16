@@ -15,10 +15,6 @@ function PersonalInfo() {
     gender: gender || 'N/A',
   });
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -36,6 +32,17 @@ function PersonalInfo() {
   const handleBackBtn = () => {
     dispatch(setIsAccSetting({ accSetting: false }));
   };
+
+  const handleSubmit = async (e) => {
+    let response = await fetch('http://localhost:3000/user/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+      credentials: 'include'
+    })
+  }
 
   return (
     <div className="w-full h-full relative flex flex-col">
@@ -76,7 +83,7 @@ function PersonalInfo() {
       <h3 className="text-sm mb-1 mt-4">Your Gender</h3>
       <div className="flex gap-2">
         <h2
-          className="text-xs flex items-center gap-2"
+          className="text-xs flex items-center gap-2 cursor-pointer"
           onClick={() => {
             if (isEdit) {
               handleGenderChange('male');
@@ -91,7 +98,7 @@ function PersonalInfo() {
           Male
         </h2>
         <h2
-          className="text-xs flex items-center gap-2"
+          className="text-xs flex items-center gap-2 cursor-pointer"
           onClick={() => {
             if (isEdit) {
               handleGenderChange('female');
@@ -127,9 +134,11 @@ function PersonalInfo() {
         onChange={handleChange}
       />
       <button
+      onClick={handleSubmit}
         className={`bg-[#221EFF] text-base px-10 py-2 rounded-sm mt-6 self-end lg:self-start ${
           isEdit ? "block" : "hidden"
         }`}
+        type="submit"
       >
         SAVE
       </button>
