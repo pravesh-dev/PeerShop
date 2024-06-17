@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { addUserName } from "../Stores/user";
+import {useNavigate } from "react-router-dom";
+import {logoutUser } from "../Stores/user";
 
 function Deactivate() {
   const loginStatus = useSelector(store => store.user.loginStatus);
-  const { email } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDeactivate, setIsDeactivate] = useState(false);
@@ -45,6 +44,8 @@ function Deactivate() {
         setIsDeactivate(true)
         setTimeout(() => {
             setIsDeactivate(false)
+            dispatch(logoutUser());
+            navigate("/");
         }, 2000);
     }
     else if(response.status === 401){
