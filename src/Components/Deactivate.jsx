@@ -10,8 +10,8 @@ function Deactivate() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDeactivate, setIsDeactivate] = useState(false);
-  const [loginError, setLoginError] = useState(false);
-  const [serverError, setServerError] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
 
   const [formData, setFormData] = useState({
     email: '',
@@ -44,31 +44,50 @@ function Deactivate() {
         let data = await response.json();
         setIsDeactivate(true)
         setTimeout(() => {
-          setIsDeactivate(false)
+            setIsDeactivate(false)
+        }, 2000);
+    }
+    else if(response.status === 401){
+          let data = await response.json();
+        setIsError(true);
+        setErrMsg(data.message)
+        setTimeout(() => {
+            setIsError(false);
+            setErrMsg('')
         }, 2000);
       }
-      else if(response.status === 500){
-        setServerError(true);
+    else if(response.status === 404){
+          let data = await response.json();
+        setIsError(true);
+        setErrMsg(data.message)
         setTimeout(() => {
-          setServerError(false)
+            setIsError(false);
+            setErrMsg('')
         }, 2000);
-      }
-      else{
-        setLoginError(true)
+    }
+    else{
+          let data = await response.json();
+        setIsError(true);
+        setErrMsg('Server Error. Please try again later!')
         setTimeout(() => {
-          setLoginError(false)
+            setIsError(false);
+            setErrMsg('')
         }, 2000);
       }
     }catch(err){
-      console.log(err)
+        setIsError(true);
+        setErrMsg('Something went wrong. Please try again later!');
+        setTimeout(() => {
+          setIsError(false)
+          setErrMsg('');
+        }, 2000);
     }
   }
   return (
     <div className="w-full h-screen bg-[#111] flex justify-center items-center background_design">
       <div className="bg-[#0000004b] w-80 h-[30rem] mx-1  flex gap-5 flex-col items-center justify-center border border-white/20 rounded-sm md:w-[30rem] lg:mt-14 relative overflow-hidden">
       <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${isDeactivate ? 'top-0' : '-top-14'}`}>Your account has been deleted</h2>
-      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${loginError ? 'top-0' : '-top-14'}`}>Something wrong with email or password.</h2>
-      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${serverError ? 'top-0' : '-top-14'}`}>Something went wrong! Please try again later.</h2>
+      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${isError ? 'top-0' : '-top-14'}`}>{errMsg}</h2>
         <h1 className="text-xl font-krona lg:mb-5">DELETE ACCOUNT</h1>
         <form
           onSubmit={handleSubmit}
