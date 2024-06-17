@@ -225,7 +225,7 @@ function PersonalInfo() {
       >
         SAVE
       </button>
-      <Link className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider lg:bottom-0 lg:left-80" onClick={handleDeactivate}>
+      <Link to='/deactivate' className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider lg:bottom-0 lg:left-80">
         Deactivate Account
       </Link>
     </div>

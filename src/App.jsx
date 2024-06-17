@@ -11,6 +11,7 @@ import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import ContactUs from "./Components/ContactUs";
 import Profile from "./Components/Profile";
+import Deactivate from "./Components/Deactivate";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/contact" element={<><ContactUs/> <Footer/></>}></Route>
           <Route path="/profile" element={<><Profile/></>}></Route>
+          <Route path="/deactivate" element={<><Deactivate/></>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
