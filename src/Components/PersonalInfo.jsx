@@ -44,7 +44,7 @@ function PersonalInfo() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(email),
+        body: JSON.stringify({email}),
         credentials: 'include'
       });
       if(response.ok){
