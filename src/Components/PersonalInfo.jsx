@@ -37,6 +37,28 @@ function PersonalInfo() {
   const handleBackBtn = () => {
     dispatch(setIsAccSetting({ accSetting: false }));
   };
+  const handleDeactivate = async(e)=> {
+    try{
+      let response = await fetch('http://localhost:3000/user/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(email),
+        credentials: 'include'
+      });
+      if(response.ok){
+        console.log('account deleted');
+      }
+    }catch(err){
+      setError(true);
+      setErrorMsg('Something went wrong. Please try again later!');
+      setTimeout(() => {
+        setError(false)
+        setErrorMsg('');
+      }, 2000);
+    }
+  }
 
   const handleSubmit = async (e) => {
     try{
@@ -203,7 +225,7 @@ function PersonalInfo() {
       >
         SAVE
       </button>
-      <Link className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider lg:bottom-0 lg:left-80">
+      <Link className="text-[#3F3BFF] absolute bottom-4 left-0 text-sm tracking-wider lg:bottom-0 lg:left-80" onClick={handleDeactivate}>
         Deactivate Account
       </Link>
     </div>
