@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { FaSortDown } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsAddAddress } from "../Stores/user";
 
 function AddNewAddress() {
   const dispatch = useDispatch();
+  const { email } = useSelector((store) => store.user);
   const handleCancelBtn = () => {
     dispatch(setIsAddAddress({ addAddress: false }));
   };
 
   const [formData, setFormData] = useState({
     name: "",
+    email: email,
     contact: "",
     pincode: "",
     locality: "",
@@ -35,6 +37,27 @@ function AddNewAddress() {
       addressType: selectedType,
     }));
   };
+
+  const handleSubmit = async () =>{
+    try{
+      let response = await fetch('http://localhost:3000/address/create', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include'
+      });
+      if(response.ok){
+        console.log('ya its done man')
+      }
+      else{
+        console.log("shit man we're fuc*ed man")
+      }
+    }catch(err){
+      console.log(err.message)
+    }
+  }
 
   return (
     <div className="w-full py-2 flex flex-col gap-2 lg:gap-4 xl:w-[80%]">
@@ -154,7 +177,7 @@ function AddNewAddress() {
         >
           CANCEL
         </button>
-        <button className="bg-[#221EFF] text-base px-7 py-1 rounded-sm">
+        <button className="bg-[#221EFF] text-base px-7 py-1 rounded-sm" onClick={handleSubmit}>
           SAVE
         </button>
       </div>
