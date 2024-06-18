@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { RiAddFill } from "react-icons/ri";
 import AddNewAddress from "./AddNewAddress";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Address() {
   const isAddAddress = useSelector(store => store.user.isAddAddress);
+  const { email } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const handleAddAddress = () => {
     dispatch(setIsAddAddress({addAddress: true}));
@@ -16,6 +17,23 @@ function Address() {
     dispatch(changeActiveProfileTab({activeTab: "profile"}))
     dispatch(setIsAccSetting({accSetting: false}))
   }
+
+  useEffect(() => {
+    const getAddresses = async () => {
+      let response = await fetch('http://localhost:3000/address/data', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email}),
+        credentials: 'include'
+      })
+      let data = await response.json();
+      console.log(data)
+    }  
+    getAddresses();
+  })
+  
   return (
     <div className="w-full h-full relative">
       <div className="flex items-center gap-5">
