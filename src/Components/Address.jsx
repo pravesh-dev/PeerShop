@@ -73,19 +73,19 @@ function Address() {
             return (
               <div key={index} className="w-full px-2 py-2 bg-neutral-900 mt-5 lg:py-3 lg:px-4">
                 <div className="flex justify-between items-center">
-                  <span className="bg-[#282828] px-3 py-1 text-[#7B7B7B] text-[0.5rem]">
-                    Home
+                  <span className="bg-[#282828] px-3 py-1 text-[#7B7B7B] text-[0.5rem] uppercase">
+                    {address.addressType}
                   </span>{" "}
                   <span className="text-[#7B7B7B] text-sm">
                     <HiOutlineDotsVertical />
                   </span>
                 </div>
                 <h2 className="flex gap-5 text-sm">
-                  Pravesh <span className="font-sans font-thin">9991831473</span>
+                  {address.name} <span className="font-sans font-thin">{address.contact}</span>
                 </h2>
                 <p className="text-[0.52rem] text-[#b8b8b8] w-64 lg:w-[25rem] lg:text-[0.6rem]">
-                  Shree Balaji mandir, Niwaz Nagar, Mahendragarh District, Haryana
-                  - <span className="text-white">123001</span>
+                  {address.address}, {address.locality}, {address.district}, {address.state}
+                  - <span className="text-white">{address.pincode}</span>
                 </p>
               </div>
             );
