@@ -6,6 +6,8 @@ import { setIsAddAddress } from "../Stores/user";
 function AddNewAddress() {
   const dispatch = useDispatch();
   const { email } = useSelector((store) => store.user);
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const handleCancelBtn = () => {
     dispatch(setIsAddAddress({ addAddress: false }));
   };
@@ -64,17 +66,28 @@ function AddNewAddress() {
         });
         setTimeout(() => {
           dispatch(setIsAddAddress({ addAddress: false }));
-        }, 2000);
+        }, 1000);
       } else {
-        console.log("shit man we're fuc*ed man");
+        setError(true);
+        setErrorMsg('Something went wrong. Please try again later!');
+        setTimeout(() => {
+          setError(false)
+          setErrorMsg('');
+        }, 2000);
       }
     } catch (err) {
-      console.log(err.message);
+      setError(true);
+      setErrorMsg('Something went wrong. Please try again later!');
+      setTimeout(() => {
+        setError(false)
+        setErrorMsg('');
+      }, 2000);
     }
   };
 
   return (
     <div className="w-full py-2 flex flex-col gap-2 lg:gap-4 xl:w-[80%]">
+      <h2 className={`bg-black/90 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute left-1/2 -translate-x-1/2 w-80 text-center duration-300 ${error ? 'top-0' : '-top-20'}`}>{errorMsg}</h2>
       <h2 className="uppercase text-sm text-[#3f3bff]">add a new address</h2>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
         <input
