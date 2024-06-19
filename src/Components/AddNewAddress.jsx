@@ -38,26 +38,40 @@ function AddNewAddress() {
     }));
   };
 
-  const handleSubmit = async () =>{
-    try{
-      let response = await fetch('http://localhost:3000/address/create', {
-        method: 'POST',
+  const handleSubmit = async () => {
+    try {
+      let response = await fetch("http://localhost:3000/address/create", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        credentials: 'include'
+        credentials: "include",
       });
-      if(response.ok){
-        console.log('ya its done man')
+      if (response.ok) {
+        setFormData({
+          name: "",
+          email: email,
+          contact: "",
+          pincode: "",
+          locality: "",
+          address: "",
+          state: "",
+          district: "",
+          landmark: "",
+          alternateContact: "",
+          addressType: "",
+        });
+        setTimeout(() => {
+          dispatch(setIsAddAddress({ addAddress: false }));
+        }, 2000);
+      } else {
+        console.log("shit man we're fuc*ed man");
       }
-      else{
-        console.log("shit man we're fuc*ed man")
-      }
-    }catch(err){
-      console.log(err.message)
+    } catch (err) {
+      console.log(err.message);
     }
-  }
+  };
 
   return (
     <div className="w-full py-2 flex flex-col gap-2 lg:gap-4 xl:w-[80%]">
@@ -101,7 +115,9 @@ function AddNewAddress() {
       <textarea
         className="bg-[#2626264b] border-[0.5px] border-white/30 w-full my-[0.08rem] h-20 p-2 text-xs resize-y outline-none"
         placeholder="Address (Area and Street)"
-        onChange={handleChange} name="address" value={formData.address}
+        onChange={handleChange}
+        name="address"
+        value={formData.address}
       ></textarea>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
         <input
@@ -177,7 +193,10 @@ function AddNewAddress() {
         >
           CANCEL
         </button>
-        <button className="bg-[#221EFF] text-base px-7 py-1 rounded-sm" onClick={handleSubmit}>
+        <button
+          className="bg-[#221EFF] text-base px-7 py-1 rounded-sm"
+          onClick={handleSubmit}
+        >
           SAVE
         </button>
       </div>

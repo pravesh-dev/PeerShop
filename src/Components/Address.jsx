@@ -50,7 +50,7 @@ function Address() {
       </div>
       <div className="h-[32rem] overflow-y-auto md:h-[30rem] lg:h-auto">
         <div
-          className={`w-full py-2 px-4 mt-5 text-[#3F3BFF] uppercase gap-3 text-sm items-center border-[0.5px] border-white/40 ${
+          className={`w-full py-2 px-4 mt-5 text-[#3F3BFF] uppercase gap-3 text-sm items-center border-[0.5px] border-white/20 ${
             isAddAddress ? "hidden" : "flex"
           } lg:py-4 cursor-pointer`}
           onClick={handleAddAddress}
