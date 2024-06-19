@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { RiAddFill } from "react-icons/ri";
 import AddNewAddress from "./AddNewAddress";
-import { HiOutlineDotsVertical } from "react-icons/hi";
+import { MdDeleteForever } from "react-icons/md";
 import {
   changeActiveProfileTab,
   setIsAccSetting,
@@ -22,10 +22,29 @@ function Address() {
     dispatch(changeActiveProfileTab({ activeTab: "profile" }));
     dispatch(setIsAccSetting({ accSetting: false }));
   };
+  const handleDelete = async (addressId, userId) => {
+    try{
+      let response = await fetch('http://localhost:3000/address/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({addressId, userId}),
+      credentials: 'include'
+    })
+    if(response.ok){
+      console.log('deleted')
+    }
+    }catch(err){
+      console.log("Something went wrong! Can't delete now")
+    }
+
+  }
 
   useEffect(() => {
     const getAddresses = async () => {
-      let response = await fetch("http://localhost:3000/address/data", {
+      try{
+        let response = await fetch("http://localhost:3000/address/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,8 +53,10 @@ function Address() {
         credentials: "include",
       });
       let data = await response.json();
-      console.log(data);
       setAddresses(data);
+      }catch(err){
+        console.log('Something wend wrong')
+      }
     };
     getAddresses();
   }, [isAddAddress]);
@@ -76,8 +97,8 @@ function Address() {
                   <span className="bg-[#282828] px-3 py-1 text-[#7B7B7B] text-[0.5rem] uppercase">
                     {address.addressType}
                   </span>{" "}
-                  <span className="text-[#7B7B7B] text-sm">
-                    <HiOutlineDotsVertical />
+                  <span className="text-[#fc0804c8] text-xl cursor-pointer lg:text-2xl" onClick={()=>{handleDelete(address._id, address.user)}}>
+                    <MdDeleteForever />
                   </span>
                 </div>
                 <h2 className="flex gap-5 text-sm">
