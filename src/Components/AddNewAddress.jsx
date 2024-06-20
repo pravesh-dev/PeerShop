@@ -110,6 +110,7 @@ function AddNewAddress() {
           type="text"
           name="name"
           placeholder="Name"
+          required
         />
         <input
           className="profile_inputs"
@@ -118,6 +119,7 @@ function AddNewAddress() {
           onChange={handleChange}
           value={formData.contact}
           placeholder="10-digit mobile number"
+          required
         />
       </div>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
@@ -128,6 +130,7 @@ function AddNewAddress() {
           value={formData.pincode}
           name="pincode"
           placeholder="Pincode"
+          required
         />
         <input
           className="profile_inputs"
@@ -136,6 +139,7 @@ function AddNewAddress() {
           name="locality"
           type="text"
           placeholder="Locality"
+          required
         />
       </div>
       <textarea
@@ -153,6 +157,7 @@ function AddNewAddress() {
           onChange={handleChange}
           value={formData.district}
           name="district"
+          required
         />
         <input
           className="profile_inputs"
@@ -161,6 +166,7 @@ function AddNewAddress() {
           onChange={handleChange}
           value={formData.state}
           name="state"
+          required
         />
       </div>
       <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
