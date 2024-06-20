@@ -34,6 +34,9 @@ function Address() {
     })
     if(response.ok){
       console.log('deleted')
+
+      // Remove the deleted address from the state
+      setAddresses(addresses.filter(address => address._id !== addressId));
     }
     }catch(err){
       console.log("Something went wrong! Can't delete now")
