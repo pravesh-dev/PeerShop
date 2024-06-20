@@ -10,6 +10,19 @@ function AddNewAddress() {
   const [errorMsg, setErrorMsg] = useState('');
   const handleCancelBtn = () => {
     dispatch(setIsAddAddress({ addAddress: false }));
+    setFormData({
+      name: "",
+      email: email,
+      contact: "",
+      pincode: "",
+      locality: "",
+      address: "",
+      state: "",
+      district: "",
+      landmark: "",
+      alternateContact: "",
+      addressType: "",
+    });
   };
 
   const [formData, setFormData] = useState({
