@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { IoStarSharp, IoFilterSharp } from "react-icons/io5";
 
 function Order() {
+  const [isFilter, setIsFilter] = useState(false);
+  const showHideFilters = (e) => {
+    isFilter ? setIsFilter(false) : setIsFilter(true)
+  }
   return (
-    <div className="w-full min-h-screen bg-[#111] flex pt-20 justify-center">
-      <div className="w-60 px-1 flex flex-col gap-2 absolute z-20 bg-[#151515] py-3 -left-full">
+    <div className="w-full min-h-screen bg-[#111] pt-20 flex justify-center">
+      <div className="w-80 relative bg-red-800">
+      <div className={`w-60 px-1 flex-col gap-2 absolute top-0 left-0 z-20 bg-[#151515] py-3 ${isFilter ? 'flex' : 'hidden'}`}>
         <div className="flex items-center">
           <Link
             to="/"
@@ -94,7 +99,7 @@ function Order() {
       <div className="w-80 border">
         <div className="flex justify-between items-center px-1 py-3">
           <h1 className="w-72 text-center text-lg font-krona text-white">My Orders</h1>
-          <h2 className="flex items-center gap-1">
+          <h2 className="flex items-center gap-1" onClick={showHideFilters}>
             <span>
               <IoFilterSharp />
             </span>
@@ -126,6 +131,7 @@ function Order() {
             </h2>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
