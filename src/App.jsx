@@ -12,6 +12,7 @@ import SignUp from "./Components/SignUp";
 import ContactUs from "./Components/ContactUs";
 import Profile from "./Components/Profile";
 import Deactivate from "./Components/Deactivate";
+import Order from "./Components/Order";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contact" element={<><ContactUs/> <Footer/></>}></Route>
           <Route path="/profile" element={<><Profile/></>}></Route>
           <Route path="/deactivate" element={<><Deactivate/></>}></Route>
+          <Route path="/profile/orders" element={<><Order/></>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

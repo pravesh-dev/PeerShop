@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import profileDef from "../assets/images/profileDef.svg";
 import { FaPowerOff, FaAngleRight } from "react-icons/fa6";
 import { RiFileList2Line } from "react-icons/ri";
@@ -46,7 +46,7 @@ function Profile() {
           </div>
           <div className="w-full h-[27rem] bg-[#191919] flex flex-col justify-between">
             <div className="">
-              <div className="flex justify-between items-center py-4 px-4 border-b border-white/10 cursor-pointer">
+              <Link to='/profile/orders' className="flex justify-between items-center py-4 px-4 border-b border-white/10 cursor-pointer">
                 <h2 className="flex items-center gap-4 text-lg text-[#AAAAAA] font-semibold">
                   <span className="text-lg text-[#3F3BFF]">
                     <RiFileList2Line />
@@ -56,7 +56,7 @@ function Profile() {
                 <span className="text-sm">
                   <FaAngleRight />
                 </span>
-              </div>
+              </Link>
               <div className="w-full py-1 border-b border-white/10">
                 <h2 className="flex px-4 items-center gap-4 text-lg text-[#AAAAAA] font-semibold uppercase">
                   <span className="text-lg text-[#3F3BFF]">
