@@ -1,21 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { IoStarSharp, IoFilterSharp } from "react-icons/io5";
 
 function Order() {
   return (
-    <div className="w-full h-screen bg-[#111] flex pt-20">
-      <div className="w-60 px-1 flex flex-col gap-2">
+    <div className="w-full min-h-screen bg-[#111] flex pt-20 justify-center">
+      <div className="w-60 px-1 flex flex-col gap-2 absolute z-20 bg-[#151515] py-3 -left-full">
         <div className="flex items-center">
-          <Link to='/' className="text-xs text-neutral-400 tracking-wider hover:text-blue-500">Home</Link>{" "}
+          <Link
+            to="/"
+            className="text-xs text-neutral-400 tracking-wider hover:text-blue-500"
+          >
+            Home
+          </Link>{" "}
           <span className="text-neutral-500 text-sm">
             <MdOutlineKeyboardArrowRight />
           </span>{" "}
-          <Link to='/profile' className="text-xs text-neutral-400 tracking-wider hover:text-blue-500">Profile</Link>{" "}
+          <Link
+            to="/profile"
+            className="text-xs text-neutral-400 tracking-wider hover:text-blue-500"
+          >
+            Profile
+          </Link>{" "}
           <span className="text-neutral-500 text-sm">
             <MdOutlineKeyboardArrowRight />
           </span>{" "}
-          <Link to='/profile/orders' className="text-xs text-neutral-400 tracking-wider hover:text-blue-500">My Orders</Link>
+          <Link
+            to="/profile/orders"
+            className="text-xs text-neutral-400 tracking-wider hover:text-blue-500"
+          >
+            My Orders
+          </Link>
         </div>
         <div className="bg-[#151515] pl-2 py-3">
           <h2 className="text-xl mb-4">Filters</h2>
@@ -75,7 +91,42 @@ function Order() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div className="w-80 border">
+        <div className="flex justify-between items-center px-1 py-3">
+          <h1 className="w-72 text-center text-lg font-krona text-white">My Orders</h1>
+          <h2 className="flex items-center gap-1">
+            <span>
+              <IoFilterSharp />
+            </span>
+            Filters
+          </h2>
+        </div>
+        <div className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3">
+          <div className="bg-cyan-600 w-10 h-10">
+            <img src="" className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h2 className="text-xs">Nike Shoes</h2>
+            <h2 className="text-[0.5rem] text-neutral-400">Type: Fashion</h2>
+          </div>
+          <div className="text-sm">$19.2</div>
+          <div>
+            <h2 className="flex items-center gap-1 text-xs">
+              <span className="w-3 h-3 bg-green-700 rounded-full"></span>{" "}
+              Delivered on Wed June 19
+            </h2>
+            <p className="text-[0.6rem] text-neutral-400">
+              Your item has been delivered
+            </p>
+            <h2 className="flex items-center gap-1 text-xs text-blue-600">
+              <span className="text-sm">
+                <IoStarSharp />
+              </span>{" "}
+              Rate & Review Product
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
