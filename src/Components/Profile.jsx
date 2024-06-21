@@ -8,7 +8,6 @@ import { FaUser } from "react-icons/fa";
 import { changeActiveProfileTab, logoutUser, setIsAccSetting } from "../Stores/user";
 import PersonalInfo from "./PersonalInfo";
 import Address from "./Address";
-import PanCard from "./PanCard";
 
 function Profile() {
   const loginStatus = useSelector((store) => store.user.loginStatus);
@@ -67,7 +66,6 @@ function Profile() {
                 </h2>
                 <h3 className="text-[0.7rem] flex gap-4 px-4 py-[0.1rem] cursor-pointer" onClick={()=>{handleAccountClick('profile')}}><span className="text-lg invisible"><FaUser/></span> Profile Information</h3>
                 <h3 className="text-[0.7rem] flex gap-4 px-4 py-[0.1rem] cursor-pointer" onClick={()=>{handleAccountClick('address')}}><span className="text-lg invisible"><FaUser/></span> Manage Addresses</h3>
-                <h3 className="text-[0.7rem] flex gap-4 px-4 py-[0.1rem] cursor-pointer" onClick={()=>{handleAccountClick('panCard')}}><span className="text-lg invisible"><FaUser/></span> PAN Card Information</h3>
               </div>
             </div>
             <h2 className="flex px-4 py-3 items-center gap-4 text-lg text-[#AAAAAA] font-semibold border-t border-white/10 cursor-pointer" onClick={handleLogOut}>
@@ -81,8 +79,6 @@ function Profile() {
                     <PersonalInfo />
                   ) : activeProfileTab === 'address' ? (
                     <Address />
-                  ) : activeProfileTab === 'panCard' ? (
-                    <PanCard />
                   ): (<div>Invalid Tab</div>)
                 }
         </div>
