@@ -5,8 +5,12 @@ import { IoStarSharp, IoFilterSharp } from "react-icons/io5";
 
 function Order() {
   const [isFilter, setIsFilter] = useState(false);
-  const showHideFilters = (e) => {
+  const [status, setStatus] = useState('')
+  const showHideFilters = () => {
     isFilter ? setIsFilter(false) : setIsFilter(true)
+  }
+  const handleStatusFilter = (statusFilter) => {
+    setStatus(statusFilter)
   }
   return (
     <div className="w-full min-h-screen bg-[#111] pt-20 flex justify-center">
@@ -42,27 +46,27 @@ function Order() {
           <h2 className="text-xl mb-4">Filters</h2>
           <div>
             <h3 className="text-lg text-neutral-300 mb-2">ORDER STATUS</h3>
-            <h4 className="flex items-center gap-2 mb-1">
+            <h4 className="flex items-center gap-2 mb-1" onClick={()=>{handleStatusFilter('onWay')}}>
               <span
-                className={`w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b]`}
+                className={`w-3 h-3 border-[0.5px] border-white/30 ${status === 'onWay' ? 'bg-blue-500' : 'bg-[#2626264b]'}`}
               ></span>
               On the way
             </h4>
-            <h4 className="flex items-center gap-2 mb-1">
+            <h4 className="flex items-center gap-2 mb-1" onClick={()=>{handleStatusFilter('delivered')}}>
               <span
-                className={`w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b]`}
+                className={`w-3 h-3 border-[0.5px] border-white/30 ${status === 'delivered' ? 'bg-blue-500' : 'bg-[#2626264b]'}`}
               ></span>
               Delivered
             </h4>
-            <h4 className="flex items-center gap-2 mb-1">
+            <h4 className="flex items-center gap-2 mb-1" onClick={()=>{handleStatusFilter('cancelled')}}>
               <span
-                className={`w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b]`}
+                className={`w-3 h-3 border-[0.5px] border-white/30 ${status === 'cancelled' ? 'bg-blue-500' : 'bg-[#2626264b]'}`}
               ></span>
               Cancelled
             </h4>
-            <h4 className="flex items-center gap-2 mb-1">
+            <h4 className="flex items-center gap-2 mb-1" onClick={()=>{handleStatusFilter('returned')}}>
               <span
-                className={`w-3 h-3 border-[0.5px] border-white/30 bg-[#2626264b]`}
+                className={`w-3 h-3 border-[0.5px] border-white/30 ${status === 'returned' ? 'bg-blue-500' : 'bg-[#2626264b]'}`}
               ></span>
               Returned
             </h4>
