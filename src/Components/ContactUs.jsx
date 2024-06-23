@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { IoLocationSharp } from "react-icons/io5";
-import { IoMdCall, IoIosMail } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 const ContactUs = () => {
@@ -20,40 +18,60 @@ const ContactUs = () => {
 
   const validateEmail = (email) => {
     const emailRegex = /^(?!.*\.{2})(?!.*\.\@)(?!.*@\.)([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-    return emailRegex.test(email);
+    if (!emailRegex.test(email)) {
+      return 'Invalid email format.';
+    }
+    return null;
   };
 
   const validateName = (name) => {
-    const nameRegex = /^[a-zA-Z\s]{4,18}$/;
-    return nameRegex.test(name);
+    const lengthRegex = /^.{4,18}$/;
+    const charRegex = /^[a-zA-Z\s]+$/;
+    if (!lengthRegex.test(name)) {
+      return 'Name should be 4-18 characters long.';
+    }
+    if (!charRegex.test(name)) {
+      return 'Name cannot contain numbers or special characters.';
+    }
+    return null;
   };
 
   const validateMessage = (message) => {
-    const messageRegex = /^[a-zA-Z0-9\s.?!]{1,}$/;
-    return messageRegex.test(message);
+    const lengthRegex = /^.{1,}$/;
+    const invalidCharRegex = /[^a-zA-Z0-9\s.?!]/;
+    if (!lengthRegex.test(message)) {
+      return 'Message cannot be empty.';
+    }
+    if (invalidCharRegex.test(message)) {
+      return 'Message can contain only letters, numbers, spaces, dots, and question marks.';
+    }
+    return null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateName(formData.name)) {
-      setFormError('Name should be 4-18 characters long and contain only letters and spaces.');
+    const nameError = validateName(formData.name);
+    if (nameError) {
+      setFormError(nameError);
       setTimeout(() => {
         setFormError('');
       }, 3000);
       return;
     }
 
-    if (!validateEmail(formData.email)) {
-      setFormError('Invalid email format.');
+    const emailError = validateEmail(formData.email);
+    if (emailError) {
+      setFormError(emailError);
       setTimeout(() => {
         setFormError('');
       }, 3000);
       return;
     }
 
-    if (!validateMessage(formData.message)) {
-      setFormError('Message can contain only letters, numbers, spaces, dots, and question marks.');
+    const messageError = validateMessage(formData.message);
+    if (messageError) {
+      setFormError(messageError);
       setTimeout(() => {
         setFormError('');
       }, 3000);
