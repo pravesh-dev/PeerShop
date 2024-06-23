@@ -12,27 +12,55 @@ function Login() {
   const [loginError, setLoginError] = useState(false);
   const [serverError, setServerError] = useState(false);
   const [hoverLink, setHoverLink] = useState(false);
-  const [name, setName] = useState('')
+  const [name, setName] = useState('');
 
   const [formData, setFormData] = useState({
     email: '',
     password: ''
-  })
-  
+  });
+
   useEffect(() => {
     if (loginStatus) {
       navigate("/");
     }
-  }, [loginStatus, navigate])
+  }, [loginStatus, navigate]);
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     setFormData({
       ...formData, [e.target.name]: e.target.value
-    })
-  }
-  const handleSubmit = async (e) =>{
+    });
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^(?!.*\.{2})(?!.*\.\@)(?!.*@\.)([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+    return passwordRegex.test(password);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+
+    if (!validateEmail(formData.email)) {
+      setLoginError(true);
+      setTimeout(() => {
+        setLoginError(false);
+      }, 2000);
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setLoginError(true);
+      setTimeout(() => {
+        setLoginError(false);
+      }, 2000);
+      return;
+    }
+
+    try {
       const response = await fetch('http://localhost:3000/user/login', {
         method: "POST",
         headers: {
@@ -41,40 +69,40 @@ function Login() {
         body: JSON.stringify(formData),
         credentials: 'include'
       });
-      if(response.ok){
+
+      if (response.ok) {
         let data = await response.json();
-        setFormData({email: '', password: ''});
-        setName(data.user.name)
-        setIsLoginMsg(true)
+        setFormData({ email: '', password: '' });
+        setName(data.user.name);
+        setIsLoginMsg(true);
         setTimeout(() => {
-          setIsLoginMsg(false)
-          dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact, userGender: data.user.gender}));
-          localStorage.setItem("token", data.user.token)
-          navigate('/')
+          setIsLoginMsg(false);
+          dispatch(addUserName({ userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact, userGender: data.user.gender }));
+          localStorage.setItem("token", data.user.token);
+          navigate('/');
         }, 2000);
-      }
-      else if(response.status === 500){
+      } else if (response.status === 500) {
         setServerError(true);
         setTimeout(() => {
-          setServerError(false)
+          setServerError(false);
         }, 2000);
-      }
-      else{
-        setLoginError(true)
+      } else {
+        setLoginError(true);
         setTimeout(() => {
-          setLoginError(false)
+          setLoginError(false);
         }, 2000);
       }
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
+
   return (
     <div className="w-full h-screen bg-[#111] flex justify-center items-center background_design">
       <div className="bg-[#0000004b] w-80 h-[30rem] mx-1  flex gap-5 flex-col items-center justify-center border border-white/20 rounded-sm md:w-[30rem] lg:mt-14 relative overflow-hidden">
-      <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${isLoginMsg ? 'top-0' : '-top-14'}`}>You are logged in as <span className=" capitalize font-krona">{name}</span>.</h2>
-      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${loginError ? 'top-0' : '-top-14'}`}>Something wrong with email or password.</h2>
-      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${serverError ? 'top-0' : '-top-14'}`}>Something went wrong! Please try again later.</h2>
+        <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${isLoginMsg ? 'top-0' : '-top-14'}`}>You are logged in as <span className=" capitalize font-krona">{name}</span>.</h2>
+        <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${loginError ? 'top-0' : '-top-14'}`}>Invalid email or password.</h2>
+        <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${serverError ? 'top-0' : '-top-14'}`}>Something went wrong! Please try again later.</h2>
         <h1 className="text-2xl font-krona lg:mb-5">LOGIN</h1>
         <form
           onSubmit={handleSubmit}
@@ -88,6 +116,7 @@ function Login() {
             className="form_input"
             value={formData.email}
             onChange={handleChange}
+            required
           />
           <input
             type="password"
@@ -97,6 +126,7 @@ function Login() {
             className="form_input"
             value={formData.password}
             onChange={handleChange}
+            required
           />
           <button className="flex items-center justify-center gap-2 border bg-white text-black font-bold w-full h-10 mt-3 rounded-md duration-300 hover:bg-transparent hover:text-white">
             Login{" "}

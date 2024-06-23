@@ -6,7 +6,7 @@ import dior from "../assets/images/Icons/dior.png";
 import nike from "../assets/images/Icons/nike.png";
 import puma from "../assets/images/Icons/puma.png";
 import zara from "../assets/images/Icons/zara.png";
-
+import {Link} from 'react-router-dom'
 function Hero() {
   return (
     <div className="w-full h-screen relative">
@@ -19,9 +19,9 @@ function Hero() {
           <h1 className="w-80 text-center tracking-widest mb-4 lg:text-2xl lg:w-[30rem]">
             Elevate your style with our curated collection - Shop now and rede!
           </h1>
-          <button className="px-4 py-2 bg bg-[#d9d9d91e] border border-white text-xs backdrop-blur-lg lg:text-sm lg:px-8 lg:py-3 hover:bg-white hover:text-black duration-300">
+          <Link to='/shop' className="px-4 py-2 bg bg-[#d9d9d91e] border border-white text-xs backdrop-blur-lg lg:text-sm lg:px-8 lg:py-3 hover:bg-white hover:text-black duration-300">
             Purchase now
-          </button>
+          </Link>
         </div>
         <div className="flex items-center justify-center gap-6 lg:gap-28">
           <img className="w-9 lg:w-14" src={nike} alt="" />
