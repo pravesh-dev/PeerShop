@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { IoStarSharp, IoFilterSharp } from "react-icons/io5";
+import notAvai from '../assets/images/not-avai.png'
 
 function Order() {
   const [isFilter, setIsFilter] = useState(false);
+  const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState('')
   const showHideFilters = () => {
     isFilter ? setIsFilter(false) : setIsFilter(true)
@@ -101,7 +103,7 @@ function Order() {
         </div>
       </div>
       <div className="w-full lg:w-[65%]">
-        <div className="flex justify-between items-center px-1 py-3 mb-3">
+        <div className="flex justify-between items-center px-1 py-3 mb-3 lg:mb-4">
           <h1 className="w-[80%] text-center text-lg font-krona text-white lg:text-2xl lg:leading-3">My Orders</h1>
           <h2 className="flex items-center gap-1 lg:hidden" onClick={showHideFilters}>
             <span>
@@ -110,7 +112,10 @@ function Order() {
             Filters
           </h2>
         </div>
-        <div className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3 mt-2 sm:px-4 lg:py-4">
+        {
+          orders.length > 0 ? (orders.map((order, index)=>{
+            return (
+              <div key={index} className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3 mt-2 sm:px-4 lg:py-4">
           <div className="bg-cyan-600 w-10 h-10 lg:w-16 lg:h-16">
             <img src="" className="w-full h-full object-cover" />
           </div>
@@ -135,6 +140,13 @@ function Order() {
             </h2>
           </div>
         </div>
+            )
+          })) : <div className=" w-[80%] flex flex-col justify-center items-center bg-[#3c3c3c1b] py-4">
+            <img src={notAvai} className="w-48" alt="" />
+            <h2 className="mt-5 text-lg text-[#fff]">No orders</h2>
+            <p className="text-sm text-neutral-400">You have not ordered any product yet!</p>
+          </div>
+        }
       </div>
       </div>
     </div>
