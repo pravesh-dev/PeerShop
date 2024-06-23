@@ -9,7 +9,7 @@ function PersonalInfo() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('');
-  const navigate = useNavigate();
+const [formValidationError, setFormValidationError] = useState('')
   const { name, email, contact, gender } = useSelector((store) => store.user);
   const [isEdit, setIsEdit] = useState(false);
   const [formData, setFormData] = useState({
@@ -38,7 +38,63 @@ function PersonalInfo() {
     dispatch(setIsAccSetting({ accSetting: false }));
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^(?!.*\.{2})(?!.*\.\@)(?!.*@\.)([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+    if (!emailRegex.test(email)) {
+      return 'Invalid email format.';
+    }
+    return null;
+  };
+
+  const validateName = (name) => {
+    const lengthRegex = /^.{4,18}$/;
+    const charRegex = /^[a-zA-Z\s]+$/;
+    if (!lengthRegex.test(name)) {
+      return 'Name should be 4-18 characters long.';
+    }
+    if (!charRegex.test(name)) {
+      return 'Name cannot contain numbers or special characters.';
+    }
+    return null;
+  };
+
+  const validateContact = (contact) => {
+    const contactRegex = /^[0-9]{10}$/;
+    if (!contactRegex.test(contact)) {
+      return 'Contact number must be exactly 10 digits.';
+    }
+    return null;
+  };
+
   const handleSubmit = async (e) => {
+
+    const nameError = validateName(formData.name);
+    if (nameError) {
+      setFormValidationError(nameError);
+      setTimeout(() => {
+        setFormValidationError('');
+      }, 3000);
+      return;
+    }
+
+    const emailError = validateEmail(formData.newEmail);
+    if (emailError) {
+      setFormValidationError(emailError);
+      setTimeout(() => {
+        setFormValidationError('');
+      }, 3000);
+      return;
+    }
+
+    const contactError = validateContact(formData.contact);
+    if (contactError) {
+      setFormValidationError(contactError);
+      setTimeout(() => {
+        setFormValidationError('');
+      }, 3000);
+      return;
+    }
+
     try{
       let response = await fetch('http://localhost:3000/user/update', {
         method: 'POST',
@@ -50,10 +106,14 @@ function PersonalInfo() {
       });
       if(response.ok){
         let data = await response.json();
-        console.log(data)
         setSubmitted(true);
         setTimeout(() => {
           setSubmitted(false)
+          setFormData((prevData) => ({
+            ...prevData,
+            oldEmail: formData.newEmail,
+            newEmail: ''
+          }));
           dispatch(addUserName({userName: data.user.name, userEmail: data.user.email, userContact: data.user.contact, userGender: data.user.gender}))
         }, 2000);
       }
@@ -97,6 +157,7 @@ function PersonalInfo() {
     <div className="w-full h-full relative flex flex-col">
       <h2 className={`bg-black/80 text-green-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute left-1/2 -translate-x-1/2 w-80 text-center duration-300 ${submitted ? 'top-0' : '-top-full'}`}>User data updated successfully.</h2>
       <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute left-1/2 -translate-x-1/2 w-80 text-center duration-300 ${error ? 'top-0' : '-top-20'}`}>{errorMsg}</h2>
+      <h2 className={`bg-black/80 text-red-600 text-sm px-3 py-1 rounded-md lg:px-5 lg:py-2 absolute duration-300 ${formValidationError ? 'top-0' : '-top-14'}`}>{formValidationError}</h2>
       <div className="flex items-center gap-5">
         <span className="text-lg md:hidden" onClick={handleBackBtn}>
           <FaAngleLeft />
