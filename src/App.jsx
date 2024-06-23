@@ -13,6 +13,7 @@ import ContactUs from "./Components/ContactUs";
 import Profile from "./Components/Profile";
 import Deactivate from "./Components/Deactivate";
 import Order from "./Components/Order";
+import TopBlankSpace from "./Components/TopBlankSpace";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/profile" element={<><Profile/></>}></Route>
           <Route path="/deactivate" element={<><Deactivate/></>}></Route>
           <Route path="/profile/orders" element={<><Order/></>}></Route>
+          <Route path="/shop" element={<><TopBlankSpace/> <ItemContainer/> <Footer /></>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

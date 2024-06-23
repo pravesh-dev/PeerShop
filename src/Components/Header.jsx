@@ -70,6 +70,7 @@ function Header() {
             About Us
           </Link>
           <Link
+          to='/shop'
             className="w-full bg-[#69409107] text-xl px-3 py-2"
             onClick={() => {
               setIsNavHidden(true);
@@ -78,12 +79,13 @@ function Header() {
             Shop
           </Link>
           <Link
+          to='/profile/orders'
             className="w-full bg-[#69409107] text-xl px-3 py-2"
             onClick={() => {
               setIsNavHidden(true);
             }}
           >
-            Blogs
+            Orders
           </Link>
           <Link
             to="/contact"
@@ -132,11 +134,11 @@ function Header() {
           <Link className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">
             About Us
           </Link>
-          <Link className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">
+          <Link to='/shop' className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">
             Shop
           </Link>
-          <Link className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">
-            Blog
+          <Link to='/profile/orders' className="text-sm hover:scale-105 duration-300 hover:text-cyan-200">
+            Orders
           </Link>
           <Link
             to="/contact"
