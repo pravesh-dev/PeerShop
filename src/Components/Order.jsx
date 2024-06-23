@@ -13,7 +13,7 @@ function Order() {
     setStatus(statusFilter)
   }
   return (
-    <div className="w-full min-h-screen bg-[#111] pt-20 flex justify-center lg:pt-32">
+    <div className="w-full min-h-screen bg-[#111] pt-20 flex justify-center lg:pt-32 lg:px-4">
       <div className="w-full relative lg:flex lg:items-start lg:justify-between">
       <div className={`w-60 px-1 flex-col gap-2 absolute top-0 left-0 z-20 bg-[#151515] py-3 ${isFilter ? 'flex' : 'hidden'} lg:flex lg:relative lg:w-80`}>
         <div className="flex items-center lg:pl-2">
@@ -100,9 +100,9 @@ function Order() {
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-[40rem] border">
+      <div className="w-full lg:w-[65%]">
         <div className="flex justify-between items-center px-1 py-3 mb-3">
-          <h1 className="w-[80%] text-center text-lg font-krona text-white">My Orders</h1>
+          <h1 className="w-[80%] text-center text-lg font-krona text-white lg:text-2xl lg:leading-3">My Orders</h1>
           <h2 className="flex items-center gap-1 lg:hidden" onClick={showHideFilters}>
             <span>
               <IoFilterSharp />
@@ -110,25 +110,25 @@ function Order() {
             Filters
           </h2>
         </div>
-        <div className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3 mt-2 sm:px-4">
-          <div className="bg-cyan-600 w-10 h-10">
+        <div className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3 mt-2 sm:px-4 lg:py-4">
+          <div className="bg-cyan-600 w-10 h-10 lg:w-16 lg:h-16">
             <img src="" className="w-full h-full object-cover" />
           </div>
           <div>
-            <h2 className="text-xs">Nike Shoes</h2>
-            <h2 className="text-[0.5rem] text-neutral-400">Type: Fashion</h2>
+            <h2 className="text-xs lg:text-lg">Nike Shoes</h2>
+            <h2 className="text-[0.5rem] text-neutral-400 lg:text-[0.68rem]">Type: Fashion</h2>
           </div>
-          <div className="text-sm">$19.2</div>
+          <div className="text-sm lg:text-xl">$19.2</div>
           <div>
-            <h2 className="flex items-center gap-1 text-xs">
-              <span className="w-3 h-3 bg-green-700 rounded-full"></span>{" "}
+            <h2 className="flex items-center gap-1 text-xs lg:text-sm">
+              <span className="w-3 h-3 bg-green-700 rounded-full lg:w-4 lg:h-4"></span>{" "}
               Delivered on Wed June 19
             </h2>
-            <p className="text-[0.6rem] text-neutral-400">
+            <p className="text-[0.6rem] text-neutral-400 lg:text-[0.68rem]">
               Your item has been delivered
             </p>
-            <h2 className="flex items-center gap-1 text-xs text-blue-600">
-              <span className="text-sm">
+            <h2 className="flex items-center gap-1 text-xs text-blue-600 lg:text-sm">
+              <span className="text-sm lg:text-xl">
                 <IoStarSharp />
               </span>{" "}
               Rate & Review Product
