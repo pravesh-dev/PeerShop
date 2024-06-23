@@ -13,10 +13,10 @@ function Order() {
     setStatus(statusFilter)
   }
   return (
-    <div className="w-full min-h-screen bg-[#111] pt-20 flex justify-center">
-      <div className="w-80 relative bg-red-800">
-      <div className={`w-60 px-1 flex-col gap-2 absolute top-0 left-0 z-20 bg-[#151515] py-3 ${isFilter ? 'flex' : 'hidden'}`}>
-        <div className="flex items-center">
+    <div className="w-full min-h-screen bg-[#111] pt-20 flex justify-center lg:pt-32">
+      <div className="w-full relative lg:flex lg:items-start lg:justify-between">
+      <div className={`w-60 px-1 flex-col gap-2 absolute top-0 left-0 z-20 bg-[#151515] py-3 ${isFilter ? 'flex' : 'hidden'} lg:flex lg:relative lg:w-80`}>
+        <div className="flex items-center lg:pl-2">
           <Link
             to="/"
             className="text-xs text-neutral-400 tracking-wider hover:text-blue-500"
@@ -42,7 +42,7 @@ function Order() {
             My Orders
           </Link>
         </div>
-        <div className="bg-[#151515] pl-2 py-3">
+        <div className="bg-[#151515] pl-2 py-3 lg:pl-5">
           <h2 className="text-xl mb-4">Filters</h2>
           <div>
             <h3 className="text-lg text-neutral-300 mb-2">ORDER STATUS</h3>
@@ -100,17 +100,17 @@ function Order() {
           </div>
         </div>
       </div>
-      <div className="w-80 border">
-        <div className="flex justify-between items-center px-1 py-3">
-          <h1 className="w-72 text-center text-lg font-krona text-white">My Orders</h1>
-          <h2 className="flex items-center gap-1" onClick={showHideFilters}>
+      <div className="w-full lg:w-[40rem] border">
+        <div className="flex justify-between items-center px-1 py-3 mb-3">
+          <h1 className="w-[80%] text-center text-lg font-krona text-white">My Orders</h1>
+          <h2 className="flex items-center gap-1 lg:hidden" onClick={showHideFilters}>
             <span>
               <IoFilterSharp />
             </span>
             Filters
           </h2>
         </div>
-        <div className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3">
+        <div className="w-full flex items-center gap-1 justify-between bg-[#1c1c1c] px-1 py-3 mt-2 sm:px-4">
           <div className="bg-cyan-600 w-10 h-10">
             <img src="" className="w-full h-full object-cover" />
           </div>
